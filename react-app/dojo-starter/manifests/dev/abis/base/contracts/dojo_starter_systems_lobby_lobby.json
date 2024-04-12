@@ -55,53 +55,20 @@
   },
   {
     "type": "impl",
-    "name": "ActionsImpl",
-    "interface_name": "dojo_starter::systems::actions::IActions"
-  },
-  {
-    "type": "enum",
-    "name": "dojo_starter::models::moves::Direction",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Left",
-        "type": "()"
-      },
-      {
-        "name": "Right",
-        "type": "()"
-      },
-      {
-        "name": "Up",
-        "type": "()"
-      },
-      {
-        "name": "Down",
-        "type": "()"
-      }
-    ]
+    "name": "LobbyImpl",
+    "interface_name": "dojo_starter::systems::lobby::ILobby"
   },
   {
     "type": "interface",
-    "name": "dojo_starter::systems::actions::IActions",
+    "name": "dojo_starter::systems::lobby::ILobby",
     "items": [
       {
         "type": "function",
-        "name": "spawn",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "view"
-      },
-      {
-        "type": "function",
-        "name": "move",
+        "name": "register_player",
         "inputs": [
           {
-            "name": "direction",
-            "type": "dojo_starter::models::moves::Direction"
+            "name": "name",
+            "type": "core::felt252"
           }
         ],
         "outputs": [],
@@ -158,7 +125,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::systems::actions::actions::Event",
+    "name": "dojo_starter::systems::lobby::lobby::Event",
     "kind": "enum",
     "variants": [
       {

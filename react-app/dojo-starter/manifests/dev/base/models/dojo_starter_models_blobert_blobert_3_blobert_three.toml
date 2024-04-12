@@ -1,0 +1,20 @@
+kind = "DojoModel"
+class_hash = "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73"
+original_class_hash = "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_blobert_blobert_3_blobert_three.json"
+name = "dojo_starter::models::blobert::blobert_3::blobert_three"
+
+[[members]]
+name = "player_id"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[members]]
+name = "health"
+type = "u8"
+key = false

@@ -169,56 +169,30 @@
   },
   {
     "type": "impl",
-    "name": "movesImpl",
-    "interface_name": "dojo_starter::models::moves::Imoves"
-  },
-  {
-    "type": "enum",
-    "name": "dojo_starter::models::moves::Direction",
-    "variants": [
-      {
-        "name": "None",
-        "type": "()"
-      },
-      {
-        "name": "Left",
-        "type": "()"
-      },
-      {
-        "name": "Right",
-        "type": "()"
-      },
-      {
-        "name": "Up",
-        "type": "()"
-      },
-      {
-        "name": "Down",
-        "type": "()"
-      }
-    ]
+    "name": "blobert_fiveImpl",
+    "interface_name": "dojo_starter::models::blobert::blobert_5::Iblobert_five"
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::moves::Moves",
+    "name": "dojo_starter::models::blobert::blobert_5::BlobertFive",
     "members": [
       {
-        "name": "player",
+        "name": "player_id",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "remaining",
+        "name": "blobert_id",
         "type": "core::integer::u8"
       },
       {
-        "name": "last_direction",
-        "type": "dojo_starter::models::moves::Direction"
+        "name": "health",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::moves::Imoves",
+    "name": "dojo_starter::models::blobert::blobert_5::Iblobert_five",
     "items": [
       {
         "type": "function",
@@ -226,7 +200,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::moves::Moves"
+            "type": "dojo_starter::models::blobert::blobert_5::BlobertFive"
           }
         ],
         "outputs": [],
@@ -236,7 +210,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::moves::moves::Event",
+    "name": "dojo_starter::models::blobert::blobert_5::blobert_five::Event",
     "kind": "enum",
     "variants": []
   }

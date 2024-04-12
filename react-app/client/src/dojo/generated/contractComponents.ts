@@ -2,44 +2,100 @@
 
 import { defineComponent, Type as RecsType, World } from "@dojoengine/recs";
 
-export type ContractComponents = Awaited<
-    ReturnType<typeof defineContractComponents>
->;
+export type ContractComponents = Awaited<ReturnType<typeof defineContractComponents>>;
 
 export function defineContractComponents(world: World) {
-    return {
-        Moves: (() => {
-            return defineComponent(
-                world,
-                {
-                    player: RecsType.BigInt,
-                    remaining: RecsType.Number,
-                    last_direction: RecsType.Number,
-                },
-                {
-                    metadata: {
-                        name: "Moves",
-                        types: ["contractaddress", "u8", "enum"],
-                        customTypes: ["Direction"],
-                    },
-                }
-            );
-        })(),
-        Position: (() => {
-            return defineComponent(
-                world,
-                {
-                    player: RecsType.BigInt,
-                    vec: { x: RecsType.Number, y: RecsType.Number },
-                },
-                {
-                    metadata: {
-                        name: "Position",
-                        types: ["contractaddress", "u32", "u32"],
-                        customTypes: ["Vec2"],
-                    },
-                }
-            );
-        })(),
-    };
+  return {
+    BlobertOne: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertOne",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertTwo: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertTwo",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertThree: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertThree",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertFour: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertFour",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertFive: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertFive",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertSix: (() => {
+      return defineComponent(
+        world,
+        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertSix",
+            types: ["contractaddress","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    Player: (() => {
+      return defineComponent(
+        world,
+        { address: RecsType.BigInt, blobert_1: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_2: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_3: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_4: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_5: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_6: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, name: RecsType.BigInt, total_duels: RecsType.Number, total_wins: RecsType.Number, total_losses: RecsType.Number, timestamp: RecsType.BigInt },
+        {
+          metadata: {
+            name: "Player",
+            types: ["contractaddress","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","felt252","u16","u16","u16","u64"],
+            customTypes: ["BlobertOne","BlobertTwo","BlobertThree","BlobertFour","BlobertFive","BlobertSix"],
+          },
+        }
+      );
+    })(),
+  };
 }

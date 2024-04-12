@@ -17,51 +17,211 @@ name = "dojo::base::base"
 
 [[contracts]]
 kind = "DojoContract"
-address = "0x7ec42d76c6d876b8f219c20b6a152fe35fe2afc62c471b29ba689c2f6a075b3"
-class_hash = "0x1d9defcdd0a85810e88f34def5030abb3f56c7f528db876092dd0a4adc879fd"
-original_class_hash = "0x1d9defcdd0a85810e88f34def5030abb3f56c7f528db876092dd0a4adc879fd"
+address = "0x554eddebb282c17b8dce34c01ed146a67d96c39d8ca5c1d09d32188fb79d37c"
+class_hash = "0x6347dc5f42a870ba17e5ba6a3009f83dd2307c8d7091bbd720d7363bdbbd68"
+original_class_hash = "0x6347dc5f42a870ba17e5ba6a3009f83dd2307c8d7091bbd720d7363bdbbd68"
 base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
-abi = "abis/deployments/contracts/dojo_starter_systems_actions_actions.json"
+abi = "abis/deployments/contracts/dojo_starter_systems_lobby_lobby.json"
 reads = []
 writes = []
 computed = []
-name = "dojo_starter::systems::actions::actions"
+name = "dojo_starter::systems::lobby::lobby"
 
 [[models]]
 kind = "DojoModel"
-class_hash = "0x23c28dcfad6be01ca6509fdb35fd2bed6622238397613c60da5d387a43c38d0"
-original_class_hash = "0x23c28dcfad6be01ca6509fdb35fd2bed6622238397613c60da5d387a43c38d0"
-abi = "abis/deployments/models/dojo_starter_models_moves_moves.json"
-name = "dojo_starter::models::moves::moves"
+class_hash = "0x3a7305310c7b2884ffc76c0337e9ca7062774d83895db48f5f698afedd74ea7"
+original_class_hash = "0x3a7305310c7b2884ffc76c0337e9ca7062774d83895db48f5f698afedd74ea7"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_1_blobert_one.json"
+name = "dojo_starter::models::blobert::blobert_1::blobert_one"
 
 [[models.members]]
-name = "player"
+name = "player_id"
 type = "ContractAddress"
 key = true
 
 [[models.members]]
-name = "remaining"
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
 type = "u8"
 key = false
 
-[[models.members]]
-name = "last_direction"
-type = "Direction"
-key = false
-
 [[models]]
 kind = "DojoModel"
-class_hash = "0x2e9c42b868b520d54bff1b7f4c9b91f39bb2e2ad1c39d6484fb5d8a95382e01"
-original_class_hash = "0x2e9c42b868b520d54bff1b7f4c9b91f39bb2e2ad1c39d6484fb5d8a95382e01"
-abi = "abis/deployments/models/dojo_starter_models_position_position.json"
-name = "dojo_starter::models::position::position"
+class_hash = "0x263bba5fd559f8a5928728b0f7ed835e3832d9e64f39676cbf3fa6d675299c7"
+original_class_hash = "0x263bba5fd559f8a5928728b0f7ed835e3832d9e64f39676cbf3fa6d675299c7"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_2_blobert_two.json"
+name = "dojo_starter::models::blobert::blobert_2::blobert_two"
 
 [[models.members]]
-name = "player"
+name = "player_id"
 type = "ContractAddress"
 key = true
 
 [[models.members]]
-name = "vec"
-type = "Vec2"
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73"
+original_class_hash = "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_3_blobert_three.json"
+name = "dojo_starter::models::blobert::blobert_3::blobert_three"
+
+[[models.members]]
+name = "player_id"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb"
+original_class_hash = "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_4_blobert_four.json"
+name = "dojo_starter::models::blobert::blobert_4::blobert_four"
+
+[[models.members]]
+name = "player_id"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x504f3a3a2c1a45bcb269b61023725dc989b9f889363b7add294d4a44cd66c79"
+original_class_hash = "0x504f3a3a2c1a45bcb269b61023725dc989b9f889363b7add294d4a44cd66c79"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_5_blobert_five.json"
+name = "dojo_starter::models::blobert::blobert_5::blobert_five"
+
+[[models.members]]
+name = "player_id"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x56a4ca3c9ba7f73968b3b6b9fd693a009a4fd8790ddaf4947acfac64037c269"
+original_class_hash = "0x56a4ca3c9ba7f73968b3b6b9fd693a009a4fd8790ddaf4947acfac64037c269"
+abi = "abis/deployments/models/dojo_starter_models_blobert_blobert_6_blobert_six.json"
+name = "dojo_starter::models::blobert::blobert_6::blobert_six"
+
+[[models.members]]
+name = "player_id"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "blobert_id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "health"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x56306fabeb390838270e060a03a95a3ce0af83d6dc10d07d1ebd73e26ec72ab"
+original_class_hash = "0x56306fabeb390838270e060a03a95a3ce0af83d6dc10d07d1ebd73e26ec72ab"
+abi = "abis/deployments/models/dojo_starter_models_player_player.json"
+name = "dojo_starter::models::player::player"
+
+[[models.members]]
+name = "address"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "blobert_1"
+type = "BlobertOne"
+key = false
+
+[[models.members]]
+name = "blobert_2"
+type = "BlobertTwo"
+key = false
+
+[[models.members]]
+name = "blobert_3"
+type = "BlobertThree"
+key = false
+
+[[models.members]]
+name = "blobert_4"
+type = "BlobertFour"
+key = false
+
+[[models.members]]
+name = "blobert_5"
+type = "BlobertFive"
+key = false
+
+[[models.members]]
+name = "blobert_6"
+type = "BlobertSix"
+key = false
+
+[[models.members]]
+name = "name"
+type = "felt252"
+key = false
+
+[[models.members]]
+name = "total_duels"
+type = "u16"
+key = false
+
+[[models.members]]
+name = "total_wins"
+type = "u16"
+key = false
+
+[[models.members]]
+name = "total_losses"
+type = "u16"
+key = false
+
+[[models.members]]
+name = "timestamp"
+type = "u64"
 key = false
