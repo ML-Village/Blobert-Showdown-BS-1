@@ -16,7 +16,7 @@ export type SystemCalls = ReturnType<typeof createSystemCalls>;
 export function createSystemCalls(
     { client }: { client: IWorld },
     contractComponents: ContractComponents,
-    { Position, Moves }: ClientComponents
+    { BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix, Player }: ClientComponents
 ) {
     const spawn = async (account: AccountInterface) => {
         const entityId = getEntityIdFromKeys([

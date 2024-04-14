@@ -10,7 +10,12 @@ export function createClientComponents({
 }) {
     return {
         ...contractComponents,
-        Position: overridableComponent(contractComponents.Position),
-        Moves: overridableComponent(contractComponents.Moves),
+        BlobertOne: overridableComponent(contractComponents.BlobertOne),
+        BlobertTwo: overridableComponent(contractComponents.BlobertTwo),
+        BlobertThree: overridableComponent(contractComponents.BlobertThree),
+        BlobertFour: overridableComponent(contractComponents.BlobertFour),
+        BlobertFive: overridableComponent(contractComponents.BlobertFive),
+        BlobertSix: overridableComponent(contractComponents.BlobertSix),
+        Player: overridableComponent(contractComponents.Player),
     };
 }
