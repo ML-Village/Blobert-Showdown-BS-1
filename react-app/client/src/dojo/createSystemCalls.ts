@@ -1,8 +1,8 @@
-import { AccountInterface } from "starknet";
+import { Account, AccountInterface, BigNumberish, Call } from "starknet";
 import { Entity, getComponentValue } from "@dojoengine/recs";
 import { uuid } from "@latticexyz/utils";
 import { ClientComponents } from "./createClientComponents";
-import { Direction, updatePositionWithDirection } from "../utils";
+import { Direction, stringToFelt, updatePositionWithDirection } from "../utils";
 import {
     getEntityIdFromKeys,
     getEvents,
@@ -10,38 +10,124 @@ import {
 } from "@dojoengine/utils";
 import { ContractComponents } from "./generated/contractComponents";
 import type { IWorld } from "./generated/generated";
+import { SetupNetworkResult } from "./setupNetwork";
 
 export type SystemCalls = ReturnType<typeof createSystemCalls>;
 
-export function createSystemCalls(
-    { client }: { client: IWorld },
-    contractComponents: ContractComponents,
-    { BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix, Player }: ClientComponents
-) {
-    const register_player = async (account: AccountInterface, name: string) => {
-        try {
-            const { transaction_hash } = await client.lobby.register_player({
-                account, name
-            })
-            console.log(
-                await account.waitForTransaction(transaction_hash, {
-                    retryInterval: 100,
-                })
-            )
+export type DojoCall = {
+    contractName: string
+    functionName: string
+    callData: BigNumberish[]
+  }
+  
 
-            setComponentsFromEvents(
-                contractComponents,
-                getEvents(
-                    await account.waitForTransaction(transaction_hash, {
-                        retryInterval: 100,
-                    })
-                )
-            );
-        }catch(e){
-            console.log(e);
+const lobby_call = (functionName: string, callData: any[]) => ({
+    contractName: 'lobby',
+    functionName,
+    callData,
+})
+
+export function createSystemCalls(
+    network: SetupNetworkResult,
+    components: ClientComponents,
+    manifest: any,
+  ) {
+    const { execute, executeMulti, call, contractComponents } = network
+
+    const _executeTransaction = async (signer: AccountInterface, params: DojoCall | Call[]): Promise<boolean> => {
+        let success = false
+        try {
+          let tx = null
+          if (!Array.isArray(params)) {
+            tx = await execute(signer, params.contractName, params.functionName, params.callData);
+            console.log(`execute ${params.contractName}::${params.functionName}() tx:`, params.callData, tx)
+          } else {
+            tx = await executeMulti(signer, params)
+            console.log(`executeMulti:`, params, ` tx:`, tx)
+          }
+    
+          const receipt = await signer.waitForTransaction(tx.transaction_hash, { retryInterval: 200 })
+          success = getReceiptStatus(receipt);
+          (success ? console.log : console.warn)(`execute success:`, success, 'receipt:', receipt, 'params:', params)
+    
+          setComponentsFromEvents(contractComponents, getEvents(receipt));
+        } catch (e) {
+          console.warn(`execute exception:`, params, e)
         } finally {
         }
+        return success
+      }
+    
+    //   const _executeCall = async (params: DojoCall): Promise<any | null> => {
+    //     let results = null
+    //     try {
+    //       const eventData = await call(params.contractName, params.functionName, params.callData)
+    //       // console.log(eventData)
+    //       // result = decodeComponent(contractComponents['Component'], eventData.result)
+    //       results = eventData.result.map(v => BigInt(v))
+    //       // console.log(`call ${system}(${args.length}) success:`, result)
+    //     } catch (e) {
+    //       console.warn(`call ${params.contractName}::${params.functionName}(${params.callData.length}) exception:`, e)
+    //     } finally {
+    //     }
+    //     return results
+    //   }
+      
+      const register_player = async (signer: AccountInterface, name: string): Promise<boolean> => {
+        const args = [stringToFelt(name)]
+        return await _executeTransaction(signer, lobby_call('register_duelist', args))
+      }
+
+      return {
+        register_player
+      }
+  }
+
+  function getReceiptStatus(receipt: any): boolean {
+    if (receipt.execution_status != 'SUCCEEDED') {
+      if (receipt.execution_status == 'REVERTED') {
+        console.error(`Transaction reverted:`, receipt.revert_reason)
+      } else {
+        console.error(`Transaction error [${receipt.execution_status}]:`, receipt)
+      }
+    //   emitter.emit('transaction_error', {
+    //     status: receipt.execution_status,
+    //     reason: receipt.revert_reason,
+    //   })
+      return false
     }
+    return true
+  }
+  
+// export function createSystemCalls(
+//     { client }: { client: IWorld },
+//     contractComponents: ContractComponents,
+//     { BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix, Player }: ClientComponents
+// ) {
+//     const register_player = async (account: AccountInterface, name: string) => {
+//         try {
+//             const { transaction_hash } = await client.lobby.register_player({
+//                 account, name
+//             })
+//             console.log(
+//                 await account.waitForTransaction(transaction_hash, {
+//                     retryInterval: 100,
+//                 })
+//             )
+
+//             setComponentsFromEvents(
+//                 contractComponents,
+//                 getEvents(
+//                     await account.waitForTransaction(transaction_hash, {
+//                         retryInterval: 100,
+//                     })
+//                 )
+//             );
+//         }catch(e){
+//             console.log(e);
+//         } finally {
+//         }
+//     }
     // const spawn = async (account: AccountInterface) => {
     //     const entityId = getEntityIdFromKeys([
     //         BigInt(account.address),
@@ -143,9 +229,9 @@ export function createSystemCalls(
     //     }
     // };
 
-    return {
-        register_player
-        // spawn,
-        // move,
-    };
-}
+//     return {
+//         register_player
+//         // spawn,
+//         // move,
+//     };
+// }

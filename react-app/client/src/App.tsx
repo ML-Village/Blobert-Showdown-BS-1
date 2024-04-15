@@ -5,15 +5,11 @@ import "./App.css";
 import { Direction, stringToFelt } from "./utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
+import { useDojoAccount, useDojoSystemCalls } from "./dojo/DojoContext";
 
 function App() {
-    const {
-        setup: {
-            systemCalls: { register_player },
-            clientComponents: {Player, BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix },
-        },
-        account,
-    } = useDojo();
+    const { register_player } = useDojoSystemCalls()
+    const { account, isMasterAccount, masterAccount, isDeploying, create, clear,copyToClipboard,applyFromClipboard,list,select, get, count } = useDojoAccount()
 
     const [clipboardStatus, setClipboardStatus] = useState({
         message: "",
@@ -22,7 +18,7 @@ function App() {
 
     // entity id we are syncing
     const entityId = getEntityIdFromKeys([
-        BigInt(account?.account.address),
+        BigInt(account?.address),
     ]) as Entity;
 
     // get current component values
@@ -31,7 +27,7 @@ function App() {
 
     const handleRestoreBurners = async () => {
         try {
-            await account?.applyFromClipboard();
+            await applyFromClipboard();
             setClipboardStatus({
                 message: "Burners restored successfully!",
                 isError: false,
@@ -56,11 +52,11 @@ function App() {
 
     return (
         <>
-            <button onClick={account?.create}>
-                {account?.isDeploying ? "deploying burner" : "create burner"}
+            <button onClick={create}>
+                {isDeploying ? "deploying burner" : "create burner"}
             </button>
-            {account && account?.list().length > 0 && (
-                <button onClick={async () => await account?.copyToClipboard()}>
+            {account && list().length > 0 && (
+                <button onClick={async () => await copyToClipboard()}>
                     Save Burners to Clipboard
                 </button>
             )}
@@ -74,14 +70,14 @@ function App() {
             )}
 
             <div className="card">
-                <div>{`burners deployed: ${account.count}`}</div>
+                <div>{`burners deployed: ${count}`}</div>
                 <div>
                     select signer:{" "}
                     <select
-                        value={account ? account.account.address : ""}
-                        onChange={(e) => account.select(e.target.value)}
+                        value={account ? account.address : ""}
+                        onChange={(e) => select(e.target.value)}
                     >
-                        {account?.list().map((account, index) => {
+                        {list().map((account, index) => {
                             return (
                                 <option value={account.address} key={index}>
                                     {account.address}
@@ -91,7 +87,7 @@ function App() {
                     </select>
                 </div>
                 <div>
-                    <button onClick={() => account.clear()}>
+                    <button onClick={() => clear()}>
                         Clear burners
                     </button>
                     <p>
@@ -120,7 +116,7 @@ function App() {
                         onClick={() =>
                            {
                             console.log(stringToFelt("test"))
-                            register_player(account.account, stringToFelt("test"))
+                            register_player(account, "test_name")
                            }
                         }
                     >

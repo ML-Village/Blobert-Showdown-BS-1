@@ -75,3 +75,44 @@ export const DojoProvider = ({
         </DojoContext.Provider>
     );
 };
+
+export const useDojo = () => {
+    const context = useContext(DojoContext);
+    if (!context)
+      throw new Error("The `useDojo` hook must be used within a `DojoProvider`");
+  
+    return {
+      setup: context,
+      account: context.account,
+      dojoProvider: context.dojoProvider,
+    };
+  };
+
+//
+// NEW
+//
+
+export const useDojoAccount = () => {
+  const { setup, account } = useDojo()
+  // account: { create, list, select, account, isDeploying }
+  return {
+    ...account,
+    accountAddress: BigInt(account?.account?.address ?? 0),
+    masterAccount: setup.masterAccount,
+    isMasterAccount: (setup.masterAccount == account.account),
+  }
+}
+
+export const useDojoSystemCalls = () => {
+  const { setup: { systemCalls } } = useDojo()
+  return {
+    ...systemCalls,
+  }
+}
+
+export const useDojoComponents = () => {
+  const { setup: { clientComponents } } = useDojo()
+  return {
+    ...clientComponents,
+  }
+}

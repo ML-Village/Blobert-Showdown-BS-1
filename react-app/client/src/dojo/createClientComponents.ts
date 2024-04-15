@@ -8,14 +8,20 @@ export function createClientComponents({
 }: {
     contractComponents: ContractComponents;
 }) {
+    const overridableComponents = Object.keys(contractComponents).reduce((result:any, key:string) => {
+        //@ts-ignore
+        result[key] = overridableComponent(contractComponents[key]);
+        return result;
+      }, {});
     return {
         ...contractComponents,
-        BlobertOne: overridableComponent(contractComponents.BlobertOne),
-        BlobertTwo: overridableComponent(contractComponents.BlobertTwo),
-        BlobertThree: overridableComponent(contractComponents.BlobertThree),
-        BlobertFour: overridableComponent(contractComponents.BlobertFour),
-        BlobertFive: overridableComponent(contractComponents.BlobertFive),
-        BlobertSix: overridableComponent(contractComponents.BlobertSix),
-        Player: overridableComponent(contractComponents.Player),
+        ...overridableComponent,
+        // BlobertOne: overridableComponent(contractComponents.BlobertOne),
+        // BlobertTwo: overridableComponent(contractComponents.BlobertTwo),
+        // BlobertThree: overridableComponent(contractComponents.BlobertThree),
+        // BlobertFour: overridableComponent(contractComponents.BlobertFour),
+        // BlobertFive: overridableComponent(contractComponents.BlobertFive),
+        // BlobertSix: overridableComponent(contractComponents.BlobertSix),
+        // Player: overridableComponent(contractComponents.Player),
     };
 }

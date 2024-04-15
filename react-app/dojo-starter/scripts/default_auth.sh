@@ -15,7 +15,7 @@ echo lobby : $LOBBY_ADDRESS
 echo "---------------------------------------------------------------------------"
 
 # enable system -> models authorizations
-sozo auth grant --world $LOBBY_ADDRESS --wait writer \
+sozo auth grant --world $WORLD_ADDRESS --wait writer \
   Player,dojo_starter::systems::lobby:lobby \
   BlobertOne,dojo_starter::systems::lobby:lobby \
   BlobertTwo,dojo_starter::systems::lobby:lobby \
@@ -26,9 +26,9 @@ sozo auth grant --world $LOBBY_ADDRESS --wait writer \
   >/dev/null
 
 # enable system -> models authorizations
-sozo auth grant --world $WORLD_ADDRESS --wait writer \
-  Position,dojo_starter::systems::actions::actions\
-  Moves,dojo_starter::systems::actions::actions\
-  >/dev/null
+# sozo auth grant --world $WORLD_ADDRESS --wait writer \
+#   Position,dojo_starter::systems::actions::actions\
+#   Moves,dojo_starter::systems::actions::actions\
+#   >/dev/null
 
 echo "Default authorizations have been successfully set."
