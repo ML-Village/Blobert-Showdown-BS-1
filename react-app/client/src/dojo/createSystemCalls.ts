@@ -18,37 +18,16 @@ export function createSystemCalls(
     contractComponents: ContractComponents,
     { BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix, Player }: ClientComponents
 ) {
-    const spawn = async (account: AccountInterface) => {
-        const entityId = getEntityIdFromKeys([
-            BigInt(account.address),
-        ]) as Entity;
-
-        const positionId = uuid();
-        Position.addOverride(positionId, {
-            entity: entityId,
-            value: { player: BigInt(entityId), vec: { x: 10, y: 10 } },
-        });
-
-        const movesId = uuid();
-        Moves.addOverride(movesId, {
-            entity: entityId,
-            value: {
-                player: BigInt(entityId),
-                remaining: 100,
-                last_direction: 0,
-            },
-        });
-
+    const register_player = async (account: AccountInterface, name: string) => {
         try {
-            const { transaction_hash } = await client.actions.spawn({
-                account,
-            });
-
+            const { transaction_hash } = await client.lobby.register_player({
+                account, name
+            })
             console.log(
                 await account.waitForTransaction(transaction_hash, {
                     retryInterval: 100,
                 })
-            );
+            )
 
             setComponentsFromEvents(
                 contractComponents,
@@ -58,69 +37,115 @@ export function createSystemCalls(
                     })
                 )
             );
-        } catch (e) {
+        }catch(e){
             console.log(e);
-            Position.removeOverride(positionId);
-            Moves.removeOverride(movesId);
         } finally {
-            Position.removeOverride(positionId);
-            Moves.removeOverride(movesId);
         }
-    };
+    }
+    // const spawn = async (account: AccountInterface) => {
+    //     const entityId = getEntityIdFromKeys([
+    //         BigInt(account.address),
+    //     ]) as Entity;
 
-    const move = async (account: AccountInterface, direction: Direction) => {
-        const entityId = getEntityIdFromKeys([
-            BigInt(account.address),
-        ]) as Entity;
+    //     const positionId = uuid();
+    //     Position.addOverride(positionId, {
+    //         entity: entityId,
+    //         value: { player: BigInt(entityId), vec: { x: 10, y: 10 } },
+    //     });
 
-        const positionId = uuid();
-        Position.addOverride(positionId, {
-            entity: entityId,
-            value: {
-                player: BigInt(entityId),
-                vec: updatePositionWithDirection(
-                    direction,
-                    getComponentValue(Position, entityId) as any
-                ).vec,
-            },
-        });
+    //     const movesId = uuid();
+    //     Moves.addOverride(movesId, {
+    //         entity: entityId,
+    //         value: {
+    //             player: BigInt(entityId),
+    //             remaining: 100,
+    //             last_direction: 0,
+    //         },
+    //     });
 
-        const movesId = uuid();
-        Moves.addOverride(movesId, {
-            entity: entityId,
-            value: {
-                player: BigInt(entityId),
-                remaining:
-                    (getComponentValue(Moves, entityId)?.remaining || 0) - 1,
-            },
-        });
+    //     try {
+    //         const { transaction_hash } = await client.actions.spawn({
+    //             account,
+    //         });
 
-        try {
-            const { transaction_hash } = await client.actions.move({
-                account,
-                direction,
-            });
+    //         console.log(
+    //             await account.waitForTransaction(transaction_hash, {
+    //                 retryInterval: 100,
+    //             })
+    //         );
 
-            setComponentsFromEvents(
-                contractComponents,
-                getEvents(
-                    await account.waitForTransaction(transaction_hash, {
-                        retryInterval: 100,
-                    })
-                )
-            );
-        } catch (e) {
-            console.log(e);
-            Position.removeOverride(positionId);
-            Moves.removeOverride(movesId);
-        } finally {
-            Position.removeOverride(positionId);
-            Moves.removeOverride(movesId);
-        }
-    };
+    //         setComponentsFromEvents(
+    //             contractComponents,
+    //             getEvents(
+    //                 await account.waitForTransaction(transaction_hash, {
+    //                     retryInterval: 100,
+    //                 })
+    //             )
+    //         );
+    //     } catch (e) {
+    //         console.log(e);
+    //         Position.removeOverride(positionId);
+    //         Moves.removeOverride(movesId);
+    //     } finally {
+    //         Position.removeOverride(positionId);
+    //         Moves.removeOverride(movesId);
+    //     }
+    // };
+
+    // const move = async (account: AccountInterface, direction: Direction) => {
+    //     const entityId = getEntityIdFromKeys([
+    //         BigInt(account.address),
+    //     ]) as Entity;
+
+    //     const positionId = uuid();
+    //     Position.addOverride(positionId, {
+    //         entity: entityId,
+    //         value: {
+    //             player: BigInt(entityId),
+    //             vec: updatePositionWithDirection(
+    //                 direction,
+    //                 getComponentValue(Position, entityId) as any
+    //             ).vec,
+    //         },
+    //     });
+
+    //     const movesId = uuid();
+    //     Moves.addOverride(movesId, {
+    //         entity: entityId,
+    //         value: {
+    //             player: BigInt(entityId),
+    //             remaining:
+    //                 (getComponentValue(Moves, entityId)?.remaining || 0) - 1,
+    //         },
+    //     });
+
+    //     try {
+    //         const { transaction_hash } = await client.actions.move({
+    //             account,
+    //             direction,
+    //         });
+
+    //         setComponentsFromEvents(
+    //             contractComponents,
+    //             getEvents(
+    //                 await account.waitForTransaction(transaction_hash, {
+    //                     retryInterval: 100,
+    //                 })
+    //             )
+    //         );
+    //     } catch (e) {
+    //         console.log(e);
+    //         Position.removeOverride(positionId);
+    //         Moves.removeOverride(movesId);
+    //     } finally {
+    //         Position.removeOverride(positionId);
+    //         Moves.removeOverride(movesId);
+    //     }
+    // };
 
     return {
-        spawn,
-        move,
+        register_player
+        // spawn,
+        // move,
     };
 }

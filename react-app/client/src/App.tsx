@@ -2,15 +2,15 @@ import { useComponentValue } from "@dojoengine/react";
 import { Entity } from "@dojoengine/recs";
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Direction } from "./utils";
+import { Direction, stringToFelt } from "./utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
 
 function App() {
     const {
         setup: {
-            systemCalls: { spawn, move },
-            clientComponents: { Position, Moves },
+            systemCalls: { register_player },
+            clientComponents: {Player, BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix },
         },
         account,
     } = useDojo();
@@ -26,8 +26,8 @@ function App() {
     ]) as Entity;
 
     // get current component values
-    const position = useComponentValue(Position, entityId);
-    const moves = useComponentValue(Moves, entityId);
+    // const position = useComponentValue(Position, entityId);
+    // const moves = useComponentValue(Moves, entityId);
 
     const handleRestoreBurners = async () => {
         try {
@@ -101,7 +101,7 @@ function App() {
                 </div>
             </div>
 
-            <div className="card">
+            {/* <div className="card">
                 <button onClick={() => spawn(account.account)}>Spawn</button>
                 <div>
                     Moves Left: {moves ? `${moves.remaining}` : "Need to Spawn"}
@@ -112,21 +112,22 @@ function App() {
                         ? `${position.vec.x}, ${position.vec.y}`
                         : "Need to Spawn"}
                 </div>
-            </div>
+            </div> */}
 
             <div className="card">
                 <div>
                     <button
                         onClick={() =>
-                            position && position.vec.y > 0
-                                ? move(account.account, Direction.Up)
-                                : console.log("Reach the borders of the world.")
+                           {
+                            console.log(stringToFelt("test"))
+                            register_player(account.account, stringToFelt("test"))
+                           }
                         }
                     >
-                        Move Up
+                        Register
                     </button>
                 </div>
-                <div>
+                {/* <div>
                     <button
                         onClick={() =>
                             position && position.vec.x > 0
@@ -148,7 +149,7 @@ function App() {
                     >
                         Move Down
                     </button>
-                </div>
+                </div> */}
             </div>
         </>
     );

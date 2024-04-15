@@ -1,3 +1,5 @@
+import { shortString } from "starknet";
+
 export enum Direction {
     Left = 1,
     Right = 2,
@@ -27,3 +29,5 @@ export function updatePositionWithDirection(
     }
     return value;
 }
+
+export const stringToFelt = (v: string): string => (v ? shortString.encodeShortString(v) : '0x0')

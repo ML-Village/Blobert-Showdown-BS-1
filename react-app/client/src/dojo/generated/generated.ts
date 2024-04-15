@@ -11,7 +11,31 @@ export interface MoveProps {
     direction: Direction;
 }
 
+export interface RegisterPlayerProps {
+    account: Account | AccountInterface;
+    name: string;
+}
+
 export async function setupWorld(provider: DojoProvider) {
+    function lobby(){
+        const contract_name = "lobby";
+
+        const register_player = async ({account, name}: RegisterPlayerProps) => {
+            try {
+                return await provider.execute(
+                    account,
+                    contract_name,
+                    "register_player",
+                    [name]
+                )
+            }catch(error){
+                console.error("Error executing lobby:", error);
+                throw error;
+            }
+        };
+
+        return {register_player};
+    }
     function actions() {
         const contract_name = "actions";
 
@@ -43,5 +67,6 @@ export async function setupWorld(provider: DojoProvider) {
     }
     return {
         actions: actions(),
+        lobby: lobby(),
     };
 }
