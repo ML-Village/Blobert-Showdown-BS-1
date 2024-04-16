@@ -55,52 +55,46 @@
   },
   {
     "type": "impl",
-    "name": "LobbyImpl",
-    "interface_name": "dojo_starter::systems::lobby::ILobby"
+    "name": "RegistryImpl",
+    "interface_name": "dojo_starter::systems::registry::IRegistry"
+  },
+  {
+    "type": "enum",
+    "name": "dojo_starter::models::move_book::MoveType",
+    "variants": [
+      {
+        "name": "Physical",
+        "type": "()"
+      },
+      {
+        "name": "Special",
+        "type": "()"
+      }
+    ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::systems::lobby::ILobby",
+    "name": "dojo_starter::systems::registry::IRegistry",
     "items": [
       {
         "type": "function",
-        "name": "register_player",
+        "name": "register_moves",
         "inputs": [
           {
-            "name": "name",
+            "name": "move_id",
+            "type": "core::integer::u128"
+          },
+          {
+            "name": "move_name",
             "type": "core::felt252"
-          }
-        ],
-        "outputs": [],
-        "state_mutability": "view"
-      },
-      {
-        "type": "function",
-        "name": "choose_blobert",
-        "inputs": [
+          },
           {
-            "name": "blobert_1",
+            "name": "damage",
             "type": "core::integer::u8"
           },
           {
-            "name": "blobert_2",
-            "type": "core::integer::u8"
-          },
-          {
-            "name": "blobert_3",
-            "type": "core::integer::u8"
-          },
-          {
-            "name": "blobert_4",
-            "type": "core::integer::u8"
-          },
-          {
-            "name": "blobert_5",
-            "type": "core::integer::u8"
-          },
-          {
-            "name": "blobert_6",
-            "type": "core::integer::u8"
+            "name": "move_type",
+            "type": "dojo_starter::models::move_book::MoveType"
           }
         ],
         "outputs": [],
@@ -157,7 +151,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::systems::lobby::lobby::Event",
+    "name": "dojo_starter::systems::registry::registry::Event",
     "kind": "enum",
     "variants": [
       {

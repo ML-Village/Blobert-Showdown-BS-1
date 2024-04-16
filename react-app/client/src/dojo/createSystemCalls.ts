@@ -75,7 +75,7 @@ export function createSystemCalls(
       
       const register_player = async (signer: AccountInterface, name: string): Promise<boolean> => {
         const args = [stringToFelt(name)]
-        return await _executeTransaction(signer, lobby_call('register_duelist', args))
+        return await _executeTransaction(signer, lobby_call('register_player', args))
       }
 
       return {

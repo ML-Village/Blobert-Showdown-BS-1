@@ -1,5 +1,6 @@
 mod systems {
     mod lobby;
+    mod registry;
 }
 
 mod models {
@@ -12,8 +13,13 @@ mod models {
         mod blobert_5;
         mod blobert_6;
     }
+    mod blobert_lineup;
+    mod move_book;
+    mod move_set;
+    mod blobert_pokedex;
 }
 
 mod tests {
     mod test_lobby;
+    mod test_registry;
 }

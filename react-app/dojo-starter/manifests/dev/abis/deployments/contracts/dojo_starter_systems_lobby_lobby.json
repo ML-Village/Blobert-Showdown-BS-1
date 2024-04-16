@@ -73,6 +73,38 @@
         ],
         "outputs": [],
         "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "choose_blobert",
+        "inputs": [
+          {
+            "name": "blobert_1",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "blobert_2",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "blobert_3",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "blobert_4",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "blobert_5",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "blobert_6",
+            "type": "core::integer::u8"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "view"
       }
     ]
   },

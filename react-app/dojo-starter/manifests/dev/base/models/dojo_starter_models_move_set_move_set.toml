@@ -1,0 +1,30 @@
+kind = "DojoModel"
+class_hash = "0x6a77dd1dff1f69eef7f8ce91bb5951420c73dc7ac175221dccf2485210fab60"
+original_class_hash = "0x6a77dd1dff1f69eef7f8ce91bb5951420c73dc7ac175221dccf2485210fab60"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_move_set_move_set.json"
+name = "dojo_starter::models::move_set::move_set"
+
+[[members]]
+name = "blobert_id"
+type = "u128"
+key = true
+
+[[members]]
+name = "move_1"
+type = "u128"
+key = false
+
+[[members]]
+name = "move_2"
+type = "u128"
+key = false
+
+[[members]]
+name = "move_3"
+type = "u128"
+key = false
+
+[[members]]
+name = "move_4"
+type = "u128"
+key = false

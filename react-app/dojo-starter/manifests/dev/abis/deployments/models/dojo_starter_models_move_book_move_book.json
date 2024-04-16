@@ -169,42 +169,48 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "move_bookImpl",
+    "interface_name": "dojo_starter::models::move_book::Imove_book"
+  },
+  {
+    "type": "enum",
+    "name": "dojo_starter::models::move_book::MoveType",
+    "variants": [
+      {
+        "name": "Physical",
+        "type": "()"
+      },
+      {
+        "name": "Special",
+        "type": "()"
+      }
+    ]
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::move_book::MoveBook",
     "members": [
       {
-        "name": "address",
-        "type": "core::starknet::contract_address::ContractAddress"
+        "name": "move_id",
+        "type": "core::integer::u128"
       },
       {
-        "name": "name",
+        "name": "move_name",
         "type": "core::felt252"
       },
       {
-        "name": "total_duels",
-        "type": "core::integer::u16"
+        "name": "damage",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_wins",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "total_losses",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "move_type",
+        "type": "dojo_starter::models::move_book::MoveType"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::move_book::Imove_book",
     "items": [
       {
         "type": "function",
@@ -212,7 +218,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::move_book::MoveBook"
           }
         ],
         "outputs": [],
@@ -222,7 +228,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::move_book::move_book::Event",
     "kind": "enum",
     "variants": []
   }

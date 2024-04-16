@@ -169,42 +169,46 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "blobert_pokedexImpl",
+    "interface_name": "dojo_starter::models::blobert_pokedex::Iblobert_pokedex"
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::blobert_pokedex::BlobertPokedex",
     "members": [
       {
-        "name": "address",
-        "type": "core::starknet::contract_address::ContractAddress"
+        "name": "blobert_id",
+        "type": "core::integer::u128"
       },
       {
-        "name": "name",
+        "name": "blobert_name",
         "type": "core::felt252"
       },
       {
-        "name": "total_duels",
-        "type": "core::integer::u16"
+        "name": "health",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_wins",
-        "type": "core::integer::u16"
+        "name": "attack",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_losses",
-        "type": "core::integer::u16"
+        "name": "special_attack",
+        "type": "core::integer::u8"
       },
       {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "special_defense",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "speed",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::blobert_pokedex::Iblobert_pokedex",
     "items": [
       {
         "type": "function",
@@ -212,7 +216,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::blobert_pokedex::BlobertPokedex"
           }
         ],
         "outputs": [],
@@ -222,7 +226,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::blobert_pokedex::blobert_pokedex::Event",
     "kind": "enum",
     "variants": []
   }

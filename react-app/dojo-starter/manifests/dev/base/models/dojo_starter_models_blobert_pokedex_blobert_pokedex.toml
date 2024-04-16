@@ -1,0 +1,40 @@
+kind = "DojoModel"
+class_hash = "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2"
+original_class_hash = "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_blobert_pokedex_blobert_pokedex.json"
+name = "dojo_starter::models::blobert_pokedex::blobert_pokedex"
+
+[[members]]
+name = "blobert_id"
+type = "u128"
+key = true
+
+[[members]]
+name = "blobert_name"
+type = "felt252"
+key = false
+
+[[members]]
+name = "health"
+type = "u8"
+key = false
+
+[[members]]
+name = "attack"
+type = "u8"
+key = false
+
+[[members]]
+name = "special_attack"
+type = "u8"
+key = false
+
+[[members]]
+name = "special_defense"
+type = "u8"
+key = false
+
+[[members]]
+name = "speed"
+type = "u8"
+key = false

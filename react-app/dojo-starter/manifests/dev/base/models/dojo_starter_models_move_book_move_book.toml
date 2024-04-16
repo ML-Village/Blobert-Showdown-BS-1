@@ -1,0 +1,25 @@
+kind = "DojoModel"
+class_hash = "0x7be4c19cce05f830a42bd9afd3c8ebb6e3e56785a5323fdcf5757b53ec68c61"
+original_class_hash = "0x7be4c19cce05f830a42bd9afd3c8ebb6e3e56785a5323fdcf5757b53ec68c61"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_move_book_move_book.json"
+name = "dojo_starter::models::move_book::move_book"
+
+[[members]]
+name = "move_id"
+type = "u128"
+key = true
+
+[[members]]
+name = "move_name"
+type = "felt252"
+key = false
+
+[[members]]
+name = "damage"
+type = "u8"
+key = false
+
+[[members]]
+name = "move_type"
+type = "MoveType"
+key = false

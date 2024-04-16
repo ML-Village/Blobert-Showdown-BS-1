@@ -1,0 +1,40 @@
+kind = "DojoModel"
+class_hash = "0x157b06c275a10cc44b46eadb570f785297bcf7b762d97ba078beed67d0a7eb"
+original_class_hash = "0x157b06c275a10cc44b46eadb570f785297bcf7b762d97ba078beed67d0a7eb"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_blobert_lineup_blobert_lineup.json"
+name = "dojo_starter::models::blobert_lineup::blobert_lineup"
+
+[[members]]
+name = "address"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "blobert_1"
+type = "u8"
+key = false
+
+[[members]]
+name = "blobert_2"
+type = "u8"
+key = false
+
+[[members]]
+name = "blobert_3"
+type = "u8"
+key = false
+
+[[members]]
+name = "blobert_4"
+type = "u8"
+key = false
+
+[[members]]
+name = "blobert_5"
+type = "u8"
+key = false
+
+[[members]]
+name = "blobert_6"
+type = "u8"
+key = false

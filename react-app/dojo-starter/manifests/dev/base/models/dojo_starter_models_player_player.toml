@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x56306fabeb390838270e060a03a95a3ce0af83d6dc10d07d1ebd73e26ec72ab"
-original_class_hash = "0x56306fabeb390838270e060a03a95a3ce0af83d6dc10d07d1ebd73e26ec72ab"
+class_hash = "0x5180bf97a23cbc84cdf22e94b328f12c937515db9df9ee961536dd7acc73d3e"
+original_class_hash = "0x5180bf97a23cbc84cdf22e94b328f12c937515db9df9ee961536dd7acc73d3e"
 abi = "manifests/dev/abis/base/models/dojo_starter_models_player_player.json"
 name = "dojo_starter::models::player::player"
 
@@ -8,36 +8,6 @@ name = "dojo_starter::models::player::player"
 name = "address"
 type = "ContractAddress"
 key = true
-
-[[members]]
-name = "blobert_1"
-type = "BlobertOne"
-key = false
-
-[[members]]
-name = "blobert_2"
-type = "BlobertTwo"
-key = false
-
-[[members]]
-name = "blobert_3"
-type = "BlobertThree"
-key = false
-
-[[members]]
-name = "blobert_4"
-type = "BlobertFour"
-key = false
-
-[[members]]
-name = "blobert_5"
-type = "BlobertFive"
-key = false
-
-[[members]]
-name = "blobert_6"
-type = "BlobertSix"
-key = false
 
 [[members]]
 name = "name"

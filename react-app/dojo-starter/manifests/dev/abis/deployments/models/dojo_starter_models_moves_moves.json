@@ -169,42 +169,56 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "movesImpl",
+    "interface_name": "dojo_starter::models::moves::Imoves"
+  },
+  {
+    "type": "enum",
+    "name": "dojo_starter::models::moves::Direction",
+    "variants": [
+      {
+        "name": "None",
+        "type": "()"
+      },
+      {
+        "name": "Left",
+        "type": "()"
+      },
+      {
+        "name": "Right",
+        "type": "()"
+      },
+      {
+        "name": "Up",
+        "type": "()"
+      },
+      {
+        "name": "Down",
+        "type": "()"
+      }
+    ]
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::moves::Moves",
     "members": [
       {
-        "name": "address",
+        "name": "player",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "name",
-        "type": "core::felt252"
+        "name": "remaining",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_duels",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "total_wins",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "total_losses",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "last_direction",
+        "type": "dojo_starter::models::moves::Direction"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::moves::Imoves",
     "items": [
       {
         "type": "function",
@@ -212,7 +226,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::moves::Moves"
           }
         ],
         "outputs": [],
@@ -222,7 +236,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::moves::moves::Event",
     "kind": "enum",
     "variants": []
   }

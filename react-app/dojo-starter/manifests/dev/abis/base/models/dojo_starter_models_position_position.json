@@ -169,42 +169,40 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "positionImpl",
+    "interface_name": "dojo_starter::models::position::Iposition"
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::position::Vec2",
     "members": [
       {
-        "name": "address",
+        "name": "x",
+        "type": "core::integer::u32"
+      },
+      {
+        "name": "y",
+        "type": "core::integer::u32"
+      }
+    ]
+  },
+  {
+    "type": "struct",
+    "name": "dojo_starter::models::position::Position",
+    "members": [
+      {
+        "name": "player",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "name",
-        "type": "core::felt252"
-      },
-      {
-        "name": "total_duels",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "total_wins",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "total_losses",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "vec",
+        "type": "dojo_starter::models::position::Vec2"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::position::Iposition",
     "items": [
       {
         "type": "function",
@@ -212,7 +210,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::position::Position"
           }
         ],
         "outputs": [],
@@ -222,7 +220,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::position::position::Event",
     "kind": "enum",
     "variants": []
   }

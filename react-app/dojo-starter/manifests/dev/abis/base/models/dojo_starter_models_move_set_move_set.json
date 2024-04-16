@@ -169,42 +169,38 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "move_setImpl",
+    "interface_name": "dojo_starter::models::move_set::Imove_set"
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::move_set::MoveSet",
     "members": [
       {
-        "name": "address",
-        "type": "core::starknet::contract_address::ContractAddress"
+        "name": "blobert_id",
+        "type": "core::integer::u128"
       },
       {
-        "name": "name",
-        "type": "core::felt252"
+        "name": "move_1",
+        "type": "core::integer::u128"
       },
       {
-        "name": "total_duels",
-        "type": "core::integer::u16"
+        "name": "move_2",
+        "type": "core::integer::u128"
       },
       {
-        "name": "total_wins",
-        "type": "core::integer::u16"
+        "name": "move_3",
+        "type": "core::integer::u128"
       },
       {
-        "name": "total_losses",
-        "type": "core::integer::u16"
-      },
-      {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "move_4",
+        "type": "core::integer::u128"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::move_set::Imove_set",
     "items": [
       {
         "type": "function",
@@ -212,7 +208,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::move_set::MoveSet"
           }
         ],
         "outputs": [],
@@ -222,7 +218,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::move_set::move_set::Event",
     "kind": "enum",
     "variants": []
   }

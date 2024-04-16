@@ -169,42 +169,46 @@
   },
   {
     "type": "impl",
-    "name": "playerImpl",
-    "interface_name": "dojo_starter::models::player::Iplayer"
+    "name": "blobert_lineupImpl",
+    "interface_name": "dojo_starter::models::blobert_lineup::Iblobert_lineup"
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::player::Player",
+    "name": "dojo_starter::models::blobert_lineup::BlobertLineup",
     "members": [
       {
         "name": "address",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "name",
-        "type": "core::felt252"
+        "name": "blobert_1",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_duels",
-        "type": "core::integer::u16"
+        "name": "blobert_2",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_wins",
-        "type": "core::integer::u16"
+        "name": "blobert_3",
+        "type": "core::integer::u8"
       },
       {
-        "name": "total_losses",
-        "type": "core::integer::u16"
+        "name": "blobert_4",
+        "type": "core::integer::u8"
       },
       {
-        "name": "timestamp",
-        "type": "core::integer::u64"
+        "name": "blobert_5",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "blobert_6",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "dojo_starter::models::player::Iplayer",
+    "name": "dojo_starter::models::blobert_lineup::Iblobert_lineup",
     "items": [
       {
         "type": "function",
@@ -212,7 +216,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "dojo_starter::models::player::Player"
+            "type": "dojo_starter::models::blobert_lineup::BlobertLineup"
           }
         ],
         "outputs": [],
@@ -222,7 +226,7 @@
   },
   {
     "type": "event",
-    "name": "dojo_starter::models::player::player::Event",
+    "name": "dojo_starter::models::blobert_lineup::blobert_lineup::Event",
     "kind": "enum",
     "variants": []
   }
