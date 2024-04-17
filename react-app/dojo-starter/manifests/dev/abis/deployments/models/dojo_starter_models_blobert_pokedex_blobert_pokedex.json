@@ -174,32 +174,6 @@
   },
   {
     "type": "struct",
-    "name": "dojo_starter::models::move_set::MoveSet",
-    "members": [
-      {
-        "name": "blobert_id",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "move_1",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "move_2",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "move_3",
-        "type": "core::integer::u128"
-      },
-      {
-        "name": "move_4",
-        "type": "core::integer::u128"
-      }
-    ]
-  },
-  {
-    "type": "struct",
     "name": "dojo_starter::models::blobert_pokedex::BlobertPokedex",
     "members": [
       {
@@ -229,10 +203,6 @@
       {
         "name": "speed",
         "type": "core::integer::u8"
-      },
-      {
-        "name": "move_set",
-        "type": "dojo_starter::models::move_set::MoveSet"
       }
     ]
   },

@@ -1036,6 +1036,181 @@
       "writes": [],
       "computed": [],
       "name": "dojo_starter::systems::lobby::lobby"
+    },
+    {
+      "kind": "DojoContract",
+      "address": "0x7200d12110039afe4e58f21540f901670e5637717fd567f89294d999c03b9a9",
+      "class_hash": "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558",
+      "original_class_hash": "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558",
+      "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
+      "abi": [
+        {
+          "type": "impl",
+          "name": "DojoResourceProviderImpl",
+          "interface_name": "dojo::world::IDojoResourceProvider"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IDojoResourceProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "dojo_resource",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "WorldProviderImpl",
+          "interface_name": "dojo::world::IWorldProvider"
+        },
+        {
+          "type": "struct",
+          "name": "dojo::world::IWorldDispatcher",
+          "members": [
+            {
+              "name": "contract_address",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo::world::IWorldProvider",
+          "items": [
+            {
+              "type": "function",
+              "name": "world",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "dojo::world::IWorldDispatcher"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "RegistryImpl",
+          "interface_name": "dojo_starter::systems::registry::IRegistry"
+        },
+        {
+          "type": "enum",
+          "name": "dojo_starter::models::move_book::MoveType",
+          "variants": [
+            {
+              "name": "Physical",
+              "type": "()"
+            },
+            {
+              "name": "Special",
+              "type": "()"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo_starter::systems::registry::IRegistry",
+          "items": [
+            {
+              "type": "function",
+              "name": "register_moves",
+              "inputs": [
+                {
+                  "name": "move_id",
+                  "type": "core::integer::u128"
+                },
+                {
+                  "name": "move_name",
+                  "type": "core::felt252"
+                },
+                {
+                  "name": "damage",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "move_type",
+                  "type": "dojo_starter::models::move_book::MoveType"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "UpgradableImpl",
+          "interface_name": "dojo::components::upgradeable::IUpgradeable"
+        },
+        {
+          "type": "interface",
+          "name": "dojo::components::upgradeable::IUpgradeable",
+          "items": [
+            {
+              "type": "function",
+              "name": "upgrade",
+              "inputs": [
+                {
+                  "name": "new_class_hash",
+                  "type": "core::starknet::class_hash::ClassHash"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Upgraded",
+          "kind": "struct",
+          "members": [
+            {
+              "name": "class_hash",
+              "type": "core::starknet::class_hash::ClassHash",
+              "kind": "data"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo::components::upgradeable::upgradeable::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "Upgraded",
+              "type": "dojo::components::upgradeable::upgradeable::Upgraded",
+              "kind": "nested"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo_starter::systems::registry::registry::Event",
+          "kind": "enum",
+          "variants": [
+            {
+              "name": "UpgradeableEvent",
+              "type": "dojo::components::upgradeable::upgradeable::Event",
+              "kind": "nested"
+            }
+          ]
+        }
+      ],
+      "reads": [],
+      "writes": [],
+      "computed": [],
+      "name": "dojo_starter::systems::registry::registry"
     }
   ],
   "models": [
@@ -2792,15 +2967,10 @@
           "name": "speed",
           "type": "u8",
           "key": false
-        },
-        {
-          "name": "move_set",
-          "type": "MoveSet",
-          "key": false
         }
       ],
-      "class_hash": "0x2135f5e0e80de33420eb25b78364d4aa62fbbdc0cac9130673220ce922ec861",
-      "original_class_hash": "0x2135f5e0e80de33420eb25b78364d4aa62fbbdc0cac9130673220ce922ec861",
+      "class_hash": "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2",
+      "original_class_hash": "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2",
       "abi": [
         {
           "type": "impl",
@@ -2977,32 +3147,6 @@
         },
         {
           "type": "struct",
-          "name": "dojo_starter::models::move_set::MoveSet",
-          "members": [
-            {
-              "name": "blobert_id",
-              "type": "core::integer::u128"
-            },
-            {
-              "name": "move_1",
-              "type": "core::integer::u128"
-            },
-            {
-              "name": "move_2",
-              "type": "core::integer::u128"
-            },
-            {
-              "name": "move_3",
-              "type": "core::integer::u128"
-            },
-            {
-              "name": "move_4",
-              "type": "core::integer::u128"
-            }
-          ]
-        },
-        {
-          "type": "struct",
           "name": "dojo_starter::models::blobert_pokedex::BlobertPokedex",
           "members": [
             {
@@ -3032,10 +3176,6 @@
             {
               "name": "speed",
               "type": "core::integer::u8"
-            },
-            {
-              "name": "move_set",
-              "type": "dojo_starter::models::move_set::MoveSet"
             }
           ]
         },

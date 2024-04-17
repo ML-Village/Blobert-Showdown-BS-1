@@ -1,4 +1,4 @@
-import { Account, AccountInterface, BigNumberish, Call } from "starknet";
+import { Account, AccountInterface, BigNumberish, Call, num } from "starknet";
 import { Entity, getComponentValue } from "@dojoengine/recs";
 import { uuid } from "@latticexyz/utils";
 import { ClientComponents } from "./createClientComponents";
@@ -78,8 +78,14 @@ export function createSystemCalls(
         return await _executeTransaction(signer, lobby_call('register_player', args))
       }
 
+      const choose_blobert = async(signer: AccountInterface, blobert_1: number, blobert_2: number, blobert_3: number, blobert_4: number, blobert_5: number, blobert_6: number): Promise<boolean> => {
+        const args = [blobert_1, blobert_2, blobert_3, blobert_4, blobert_5, blobert_6]
+        return await _executeTransaction(signer, lobby_call('choose_blobert', args))
+      }
+
       return {
-        register_player
+        register_player,
+        choose_blobert
       }
   }
 

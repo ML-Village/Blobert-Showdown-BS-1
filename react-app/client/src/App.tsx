@@ -1,15 +1,22 @@
 import { useComponentValue } from "@dojoengine/react";
-import { Entity } from "@dojoengine/recs";
+import { Entity, HasValue } from "@dojoengine/recs";
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Direction, stringToFelt } from "./utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
 import { useDojo } from "./dojo/useDojo";
-import { useDojoAccount, useDojoSystemCalls } from "./dojo/DojoContext";
+import { useDojoAccount, useDojoComponents, useDojoSystemCalls } from "./dojo/DojoContext";
+import { useEntityKeys, useEntityKeysQuery } from "./hooks/useEntityHook";
+import { bigintToEntity } from "./utils/type";
+import { usePlayer } from "./hooks/usePlayer";
+import { useBlobertLineup } from "./hooks/useBlobertLineup";
 
 function App() {
-    const { register_player } = useDojoSystemCalls()
+    const { register_player, choose_blobert } = useDojoSystemCalls()
+    const {Player, BlobertLineup} = useDojoComponents();
     const { account, isMasterAccount, masterAccount, isDeploying, create, clear,copyToClipboard,applyFromClipboard,list,select, get, count } = useDojoAccount()
+    const {name, total_duels, total_wins, total_losses} = usePlayer(account.address)
+    const {blobert_1, blobert_2, blobert_3, blobert_4, blobert_5, blobert_6} = useBlobertLineup(account.address)
 
     const [clipboardStatus, setClipboardStatus] = useState({
         message: "",
@@ -22,7 +29,11 @@ function App() {
     ]) as Entity;
 
     // get current component values
-    // const position = useComponentValue(Position, entityId);
+    // const player = useComponentValue(Player, entityId);
+    // const player_address = useEntityKeysQuery(Player, 'address',[HasValue(Player, { address: BigInt(account.address)})])
+    // const player = useComponentValue(Player, bigintToEntity(player_address[0]));
+    // const blobert_lineup_adress = useEntityKeysQuery(BlobertLineup, 'address', [HasValue(BlobertLineup, {address: BigInt(account.address)})])
+    // const blobert_lineup = useComponentValue(BlobertLineup, bigintToEntity(blobert_lineup_adress[0]));
     // const moves = useComponentValue(Moves, entityId);
 
     const handleRestoreBurners = async () => {
@@ -121,6 +132,34 @@ function App() {
                         }
                     >
                         Register
+                    </button>
+                </div>
+                <div>
+                    <button
+                        onClick={() =>
+                           {
+                                console.log(name)
+                           }
+                        }
+                    >
+                        Check User
+                    </button>
+                </div>
+                <div>
+                   <ul>
+                    <li>{blobert_1}</li>
+                    <li>{blobert_2}</li>
+                    <li>{blobert_3}</li>
+                    <li>{blobert_4}</li>
+                   </ul>
+                </div>
+                <div>
+                    <button
+                        onClick={()=>{
+                            choose_blobert(account, 1,2,3,4,5,6)
+                        }}
+                    >
+                        Apply Lineup
                     </button>
                 </div>
                 {/* <div>

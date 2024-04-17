@@ -39,6 +39,18 @@ writes = []
 computed = []
 name = "dojo_starter::systems::lobby::lobby"
 
+[[contracts]]
+kind = "DojoContract"
+address = "0x7200d12110039afe4e58f21540f901670e5637717fd567f89294d999c03b9a9"
+class_hash = "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558"
+original_class_hash = "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+abi = "abis/deployments/contracts/dojo_starter_systems_registry_registry.json"
+reads = []
+writes = []
+computed = []
+name = "dojo_starter::systems::registry::registry"
+
 [[models]]
 kind = "DojoModel"
 class_hash = "0x3a7305310c7b2884ffc76c0337e9ca7062774d83895db48f5f698afedd74ea7"
@@ -215,8 +227,8 @@ key = false
 
 [[models]]
 kind = "DojoModel"
-class_hash = "0x2135f5e0e80de33420eb25b78364d4aa62fbbdc0cac9130673220ce922ec861"
-original_class_hash = "0x2135f5e0e80de33420eb25b78364d4aa62fbbdc0cac9130673220ce922ec861"
+class_hash = "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2"
+original_class_hash = "0x69ff32277247ae6eb36e08bb4906fcc574daa60f4763cda9aa873e416efcef2"
 abi = "abis/deployments/models/dojo_starter_models_blobert_pokedex_blobert_pokedex.json"
 name = "dojo_starter::models::blobert_pokedex::blobert_pokedex"
 
@@ -253,11 +265,6 @@ key = false
 [[models.members]]
 name = "speed"
 type = "u8"
-key = false
-
-[[models.members]]
-name = "move_set"
-type = "MoveSet"
 key = false
 
 [[models]]

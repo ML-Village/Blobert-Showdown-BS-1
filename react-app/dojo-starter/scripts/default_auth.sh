@@ -16,8 +16,8 @@ echo "--------------------------------------------------------------------------
 
 # enable system -> models authorizations
 sozo auth grant --world $WORLD_ADDRESS --wait writer \
-  Player,dojo_starter::systems::lobby:lobby \
-  BlobertLineup,dojo_starter::systems::lobby:lobby \
+  Player,$LOBBY_ADDRESS \
+  BlobertLineup,$LOBBY_ADDRESS \
   >/dev/null
 
 # enable system -> models authorizations

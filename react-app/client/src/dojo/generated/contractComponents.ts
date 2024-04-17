@@ -84,15 +84,93 @@ export function defineContractComponents(world: World) {
         }
       );
     })(),
+    BlobertLineup: (() => {
+      return defineComponent(
+        world,
+        { address: RecsType.BigInt, blobert_1: RecsType.Number, blobert_2: RecsType.Number, blobert_3: RecsType.Number, blobert_4: RecsType.Number, blobert_5: RecsType.Number, blobert_6: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertLineup",
+            types: ["contractaddress","u8","u8","u8","u8","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    BlobertPokedex: (() => {
+      return defineComponent(
+        world,
+        { blobert_id: RecsType.BigInt, blobert_name: RecsType.BigInt, health: RecsType.Number, attack: RecsType.Number, special_attack: RecsType.Number, special_defense: RecsType.Number, speed: RecsType.Number },
+        {
+          metadata: {
+            name: "BlobertPokedex",
+            types: ["u128","felt252","u8","u8","u8","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    MoveBook: (() => {
+      return defineComponent(
+        world,
+        { move_id: RecsType.BigInt, move_name: RecsType.BigInt, damage: RecsType.Number, move_type: RecsType.Number },
+        {
+          metadata: {
+            name: "MoveBook",
+            types: ["u128","felt252","u8","enum"],
+            customTypes: ["MoveType"],
+          },
+        }
+      );
+    })(),
+    MoveSet: (() => {
+      return defineComponent(
+        world,
+        { blobert_id: RecsType.BigInt, move_1: RecsType.BigInt, move_2: RecsType.BigInt, move_3: RecsType.BigInt, move_4: RecsType.BigInt },
+        {
+          metadata: {
+            name: "MoveSet",
+            types: ["u128","u128","u128","u128","u128"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    Moves: (() => {
+      return defineComponent(
+        world,
+        { player: RecsType.BigInt, remaining: RecsType.Number, last_direction: RecsType.Number },
+        {
+          metadata: {
+            name: "Moves",
+            types: ["contractaddress","u8","enum"],
+            customTypes: ["Direction"],
+          },
+        }
+      );
+    })(),
     Player: (() => {
       return defineComponent(
         world,
-        { address: RecsType.BigInt, blobert_1: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_2: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_3: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_4: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_5: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, blobert_6: { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number }, name: RecsType.BigInt, total_duels: RecsType.Number, total_wins: RecsType.Number, total_losses: RecsType.Number, timestamp: RecsType.BigInt },
+        { address: RecsType.BigInt, name: RecsType.BigInt, total_duels: RecsType.Number, total_wins: RecsType.Number, total_losses: RecsType.Number, timestamp: RecsType.BigInt },
         {
           metadata: {
             name: "Player",
-            types: ["contractaddress","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","contractaddress","u8","u8","felt252","u16","u16","u16","u64"],
-            customTypes: ["BlobertOne","BlobertTwo","BlobertThree","BlobertFour","BlobertFive","BlobertSix"],
+            types: ["contractaddress","felt252","u16","u16","u16","u64"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    Position: (() => {
+      return defineComponent(
+        world,
+        { player: RecsType.BigInt, vec: { x: RecsType.Number, y: RecsType.Number } },
+        {
+          metadata: {
+            name: "Position",
+            types: ["contractaddress","u32","u32"],
+            customTypes: ["Vec2"],
           },
         }
       );
