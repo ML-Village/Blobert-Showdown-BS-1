@@ -1,0 +1,23 @@
+export const blobbersPath = [
+    "../src/assets/blobbers/aaron.png",
+    "../src/assets/blobbers/acetrainer-gen1rb.png",
+    "../src/assets/blobbers/acetrainer-gen4.png",
+    "../src/assets/blobbers/acetrainer-gen4dp.png",
+    "../src/assets/blobbers/acetrainer.png",
+    "../src/assets/blobbers/adaman.png",
+    "../src/assets/blobbers/artistf-gen6.png",
+    "../src/assets/blobbers/backpacker.png",
+    "../src/assets/blobbers/ballguy.png",
+    "../src/assets/blobbers/blue.png",
+    "../src/assets/blobbers/bruno-gen2.png",
+    "../src/assets/blobbers/cueball-gen1rb.png",
+    "../src/assets/blobbers/engineer-gen3.png",
+    "../src/assets/blobbers/furisodegirl-black.png",
+    "../src/assets/blobbers/johanna.png",
+    "../src/assets/blobbers/lance-gen3.png",
+    "../src/assets/blobbers/liza-masters.png",
+    "../src/assets/blobbers/spenser-gen3.png",
+    "../src/assets/blobbers/swimmer-gen4jp.png",
+    "../src/assets/blobbers/tuber-gen3.png",
+    "../src/assets/blobbers/youngster-gen3rs/png"
+]

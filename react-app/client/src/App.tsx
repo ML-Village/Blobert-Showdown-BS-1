@@ -1,6 +1,7 @@
 import { useComponentValue } from "@dojoengine/react";
 import { Entity, HasValue } from "@dojoengine/recs";
 import { useEffect, useState } from "react";
+import { blobbersPath } from "../src/utils/blobbers";
 import "./App.css";
 import { Direction, stringToFelt } from "./utils";
 import { getEntityIdFromKeys } from "@dojoengine/utils";
@@ -10,6 +11,7 @@ import { useEntityKeys, useEntityKeysQuery } from "./hooks/useEntityHook";
 import { bigintToEntity } from "./utils/type";
 import { usePlayer } from "./hooks/usePlayer";
 import { useBlobertLineup } from "./hooks/useBlobertLineup";
+import { Spinner } from "flowbite-react";
 
 function App() {
     const { register_player, choose_blobert } = useDojoSystemCalls()
@@ -18,23 +20,12 @@ function App() {
     const {name, total_duels, total_wins, total_losses} = usePlayer(account.address)
     const {blobert_1, blobert_2, blobert_3, blobert_4, blobert_5, blobert_6} = useBlobertLineup(account.address)
 
+    const [nameSet, setNameSet] = useState<string>(); 
+
     const [clipboardStatus, setClipboardStatus] = useState({
         message: "",
         isError: false,
     });
-
-    // entity id we are syncing
-    const entityId = getEntityIdFromKeys([
-        BigInt(account?.address),
-    ]) as Entity;
-
-    // get current component values
-    // const player = useComponentValue(Player, entityId);
-    // const player_address = useEntityKeysQuery(Player, 'address',[HasValue(Player, { address: BigInt(account.address)})])
-    // const player = useComponentValue(Player, bigintToEntity(player_address[0]));
-    // const blobert_lineup_adress = useEntityKeysQuery(BlobertLineup, 'address', [HasValue(BlobertLineup, {address: BigInt(account.address)})])
-    // const blobert_lineup = useComponentValue(BlobertLineup, bigintToEntity(blobert_lineup_adress[0]));
-    // const moves = useComponentValue(Moves, entityId);
 
     const handleRestoreBurners = async () => {
         try {
@@ -63,128 +54,95 @@ function App() {
 
     return (
         <>
-            <button onClick={create}>
-                {isDeploying ? "deploying burner" : "create burner"}
-            </button>
-            {account && list().length > 0 && (
-                <button onClick={async () => await copyToClipboard()}>
-                    Save Burners to Clipboard
+            <div className="max-w-screen-lg mx-auto p-8 bg-gray-800 text-white rounded-lg">
+            <div className="flex flex-col space-y-4">
+                {isDeploying ? (
+                <div className="flex justify-center items-center">
+                    <Spinner size="lg" color="failure" aria-label="Summoning Blobber" />
+                </div>
+                ) : (
+                <button 
+                    onClick={create} 
+                    disabled={count >= 4} 
+                    className={`w-full px-4 py-2 font-semibold rounded-lg transition-colors ${count >= 4 ? "bg-gray-700 text-gray-400 cursor-not-allowed" : "bg-orange-300 hover:bg-orange-400 text-gray-800"}`}
+                >
+                    {count >= 4 ? "You have enough Blobbers." : "Summon A Blobber"}
                 </button>
-            )}
-            <button onClick={handleRestoreBurners}>
-                Restore Burners from Clipboard
-            </button>
-            {clipboardStatus.message && (
-                <div className={clipboardStatus.isError ? "error" : "success"}>
-                    {clipboardStatus.message}
-                </div>
-            )}
-
-            <div className="card">
-                <div>{`burners deployed: ${count}`}</div>
-                <div>
-                    select signer:{" "}
-                    <select
-                        value={account ? account.address : ""}
-                        onChange={(e) => select(e.target.value)}
-                    >
-                        {list().map((account, index) => {
-                            return (
-                                <option value={account.address} key={index}>
-                                    {account.address}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </div>
-                <div>
-                    <button onClick={() => clear()}>
-                        Clear burners
-                    </button>
-                    <p>
-                        You will need to Authorise the contracts before you can
-                        use a burner. See readme.
-                    </p>
+                )}
+        
+                <button 
+                onClick={clear} 
+                className="bg-orange-300 hover:bg-orange-400 text-gray-800 border-2 border-orange-950 font-semibold mx-2 px-4 py-2 rounded-lg transition-colors"
+                >
+                Kick All Blobbers
+                </button>
+        
+                <div className="text-right font-semibold px-2">
+                Summoned Blobbers: {count}/4
                 </div>
             </div>
+        
+            <div className="flex justify-center mt-4">
+                {list().reverse().map((a, index) => (
+                    <div
+                    key={index}
+                    className="flex m-2 items-center border-2 rounded-lg overflow-hidden bg-gray-800 border-orange-500"
+                    >
+                    <img
+                        className="object-cover w-28 h-28"
+                        src={blobbersPath[index % blobbersPath.length]}
+                        alt="Blobber"
+                    />
+                    <input
+                        onChange={(e) => setNameSet(e.target.value)}
+                        type="text"
+                        placeholder="Name your Blobber"
+                        className="flex-1 py-2 px-4 text-lg bg-transparent text-white placeholder-white focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                    />
+                    </div>
+                ))}
+            </div>
 
-            {/* <div className="card">
-                <button onClick={() => spawn(account.account)}>Spawn</button>
-                <div>
-                    Moves Left: {moves ? `${moves.remaining}` : "Need to Spawn"}
-                </div>
-                <div>
-                    Position:{" "}
-                    {position
-                        ? `${position.vec.x}, ${position.vec.y}`
-                        : "Need to Spawn"}
-                </div>
-            </div> */}
 
-            <div className="card">
-                <div>
-                    <button
-                        onClick={() =>
-                           {
-                            console.log(stringToFelt("test"))
-                            register_player(account, "test_name")
-                           }
-                        }
-                    >
-                        Register
-                    </button>
+        
+            <div className="bg-gray-700 p-4 rounded-lg shadow-lg mt-4">
+                <div className="flex flex-col space-y-4">
+                <button
+                    onClick={() => {
+                    if(!nameSet){ 
+                        alert("Input name") 
+                        return
+                    }
+                    console.log(stringToFelt(nameSet));
+                    register_player(account, nameSet);
+                    }}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                >
+                    Register
+                </button>
+        
+                <button
+                    onClick={() => console.log(name)}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                >
+                    Check User
+                </button>
+        
+                <ul className="list-none p-0">
+                    {blobert_1 && <li className="py-1">{blobert_1}</li>}
+                    {blobert_2 && <li className="py-1">{blobert_2}</li>}
+                    {blobert_3 && <li className="py-1">{blobert_3}</li>}
+                    {blobert_4 && <li className="py-1">{blobert_4}</li>}
+                </ul>
+        
+                <button
+                    onClick={() => choose_blobert(account, 1, 2, 3, 4, 5, 6)}
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                >
+                    Apply Lineup
+                </button>
                 </div>
-                <div>
-                    <button
-                        onClick={() =>
-                           {
-                                console.log(name)
-                           }
-                        }
-                    >
-                        Check User
-                    </button>
-                </div>
-                <div>
-                   <ul>
-                    <li>{blobert_1}</li>
-                    <li>{blobert_2}</li>
-                    <li>{blobert_3}</li>
-                    <li>{blobert_4}</li>
-                   </ul>
-                </div>
-                <div>
-                    <button
-                        onClick={()=>{
-                            choose_blobert(account, 1,2,3,4,5,6)
-                        }}
-                    >
-                        Apply Lineup
-                    </button>
-                </div>
-                {/* <div>
-                    <button
-                        onClick={() =>
-                            position && position.vec.x > 0
-                                ? move(account.account, Direction.Left)
-                                : console.log("Reach the borders of the world.")
-                        }
-                    >
-                        Move Left
-                    </button>
-                    <button
-                        onClick={() => move(account.account, Direction.Right)}
-                    >
-                        Move Right
-                    </button>
-                </div>
-                <div>
-                    <button
-                        onClick={() => move(account.account, Direction.Down)}
-                    >
-                        Move Down
-                    </button>
-                </div> */}
+            </div>
             </div>
         </>
     );
