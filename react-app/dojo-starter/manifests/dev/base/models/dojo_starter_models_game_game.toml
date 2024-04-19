@@ -1,0 +1,35 @@
+kind = "DojoModel"
+class_hash = "0x53ef519c4abb17b8eba5a3f6888534b7e9ba9bfd622270d577e2ce55be4354d"
+original_class_hash = "0x53ef519c4abb17b8eba5a3f6888534b7e9ba9bfd622270d577e2ce55be4354d"
+abi = "manifests/dev/abis/base/models/dojo_starter_models_game_game.json"
+name = "dojo_starter::models::game::game"
+
+[[members]]
+name = "game_id"
+type = "u128"
+key = true
+
+[[members]]
+name = "player_a"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "player_b"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "active_blobert_a"
+type = "u128"
+key = false
+
+[[members]]
+name = "active_blobert_b"
+type = "u128"
+key = false
+
+[[members]]
+name = "turn"
+type = "ContractAddress"
+key = false

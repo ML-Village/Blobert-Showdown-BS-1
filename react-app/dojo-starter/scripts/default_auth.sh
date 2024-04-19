@@ -18,6 +18,8 @@ echo "--------------------------------------------------------------------------
 sozo auth grant --world $WORLD_ADDRESS --wait writer \
   Player,$LOBBY_ADDRESS \
   BlobertLineup,$LOBBY_ADDRESS \
+  Game,$LOBBY_ADDRESS \
+  BlobertPokedex,$LOBBY_ADDRESS \
   >/dev/null
 
 # enable system -> models authorizations

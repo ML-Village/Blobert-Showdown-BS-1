@@ -1,6 +1,7 @@
 mod systems {
     mod lobby;
     mod registry;
+    mod utils;
 }
 
 mod models {
@@ -17,9 +18,17 @@ mod models {
     mod move_book;
     mod move_set;
     mod blobert_pokedex;
+    mod side_effect;
+    mod game;
 }
 
 mod tests {
     mod test_lobby;
     mod test_registry;
+    mod utils;
+}
+
+mod utils {
+    mod hash;
+    mod seed_gen;
 }

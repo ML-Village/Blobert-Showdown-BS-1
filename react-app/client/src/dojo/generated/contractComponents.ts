@@ -9,12 +9,12 @@ export function defineContractComponents(world: World) {
     BlobertOne: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertOne",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -22,12 +22,12 @@ export function defineContractComponents(world: World) {
     BlobertTwo: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertTwo",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -35,12 +35,12 @@ export function defineContractComponents(world: World) {
     BlobertThree: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertThree",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -48,12 +48,12 @@ export function defineContractComponents(world: World) {
     BlobertFour: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertFour",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -61,12 +61,12 @@ export function defineContractComponents(world: World) {
     BlobertFive: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertFive",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -74,12 +74,12 @@ export function defineContractComponents(world: World) {
     BlobertSix: (() => {
       return defineComponent(
         world,
-        { player_id: RecsType.BigInt, blobert_id: RecsType.Number, health: RecsType.Number },
+        { player_id: RecsType.BigInt, game_id: RecsType.BigInt, blobert_id: RecsType.BigInt, health: RecsType.Number, blobet_side_effect: RecsType.Number },
         {
           metadata: {
             name: "BlobertSix",
-            types: ["contractaddress","u8","u8"],
-            customTypes: [],
+            types: ["contractaddress","u128","u128","u8","enum"],
+            customTypes: ["SideEffectType"],
           },
         }
       );
@@ -87,11 +87,11 @@ export function defineContractComponents(world: World) {
     BlobertLineup: (() => {
       return defineComponent(
         world,
-        { address: RecsType.BigInt, blobert_1: RecsType.Number, blobert_2: RecsType.Number, blobert_3: RecsType.Number, blobert_4: RecsType.Number, blobert_5: RecsType.Number, blobert_6: RecsType.Number },
+        { address: RecsType.BigInt, blobert_1: RecsType.BigInt, blobert_2: RecsType.BigInt, blobert_3: RecsType.BigInt, blobert_4: RecsType.BigInt, blobert_5: RecsType.BigInt, blobert_6: RecsType.BigInt },
         {
           metadata: {
             name: "BlobertLineup",
-            types: ["contractaddress","u8","u8","u8","u8","u8","u8"],
+            types: ["contractaddress","u128","u128","u128","u128","u128","u128"],
             customTypes: [],
           },
         }
@@ -105,6 +105,19 @@ export function defineContractComponents(world: World) {
           metadata: {
             name: "BlobertPokedex",
             types: ["u128","felt252","u8","u8","u8","u8","u8"],
+            customTypes: [],
+          },
+        }
+      );
+    })(),
+    Game: (() => {
+      return defineComponent(
+        world,
+        { game_id: RecsType.BigInt, player_a: RecsType.BigInt, player_b: RecsType.BigInt, active_blobert_a: RecsType.BigInt, active_blobert_b: RecsType.BigInt, turn: RecsType.BigInt },
+        {
+          metadata: {
+            name: "Game",
+            types: ["u128","contractaddress","contractaddress","u128","u128","contractaddress"],
             customTypes: [],
           },
         }

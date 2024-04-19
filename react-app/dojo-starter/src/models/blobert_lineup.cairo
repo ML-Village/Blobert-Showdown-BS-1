@@ -9,11 +9,11 @@ use dojo_starter::models::blobert::{blobert_1::BlobertOne,blobert_2::BlobertTwo,
 struct BlobertLineup {
     #[key]
     address: ContractAddress,
-    blobert_1: u8,
-    blobert_2: u8,
-    blobert_3: u8,
-    blobert_4: u8,
-    blobert_5: u8,
-    blobert_6: u8,
+    blobert_1: u128,
+    blobert_2: u128,
+    blobert_3: u128,
+    blobert_4: u128,
+    blobert_5: u128,
+    blobert_6: u128,
 }
 

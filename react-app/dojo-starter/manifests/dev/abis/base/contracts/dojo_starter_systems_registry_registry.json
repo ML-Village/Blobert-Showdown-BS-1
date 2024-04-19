@@ -99,6 +99,42 @@
         ],
         "outputs": [],
         "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "register_blobert",
+        "inputs": [
+          {
+            "name": "blobert_id",
+            "type": "core::integer::u128"
+          },
+          {
+            "name": "blobert_name",
+            "type": "core::felt252"
+          },
+          {
+            "name": "health",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "attack",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "special_attack",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "special_defense",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "speed",
+            "type": "core::integer::u8"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "view"
       }
     ]
   },

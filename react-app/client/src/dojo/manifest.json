@@ -859,8 +859,8 @@
     {
       "kind": "DojoContract",
       "address": "0x554eddebb282c17b8dce34c01ed146a67d96c39d8ca5c1d09d32188fb79d37c",
-      "class_hash": "0x7971ed306d3cf1713df280d66f61dc04820d383262a40a621c3900b2cba47c5",
-      "original_class_hash": "0x7971ed306d3cf1713df280d66f61dc04820d383262a40a621c3900b2cba47c5",
+      "class_hash": "0x29574cea953be42473f45da8a216f8276081329525263a850a9ff15651635f8",
+      "original_class_hash": "0x29574cea953be42473f45da8a216f8276081329525263a850a9ff15651635f8",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -944,29 +944,36 @@
               "inputs": [
                 {
                   "name": "blobert_1",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 },
                 {
                   "name": "blobert_2",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 },
                 {
                   "name": "blobert_3",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 },
                 {
                   "name": "blobert_4",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 },
                 {
                   "name": "blobert_5",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 },
                 {
                   "name": "blobert_6",
-                  "type": "core::integer::u8"
+                  "type": "core::integer::u128"
                 }
               ],
+              "outputs": [],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "create_battle_room",
+              "inputs": [],
               "outputs": [],
               "state_mutability": "view"
             }
@@ -1040,8 +1047,8 @@
     {
       "kind": "DojoContract",
       "address": "0x7200d12110039afe4e58f21540f901670e5637717fd567f89294d999c03b9a9",
-      "class_hash": "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558",
-      "original_class_hash": "0x58efa7e1895e9d8d89a178c532b2a3e9165d2a1603f427b48c870fe36fef558",
+      "class_hash": "0xf1bba370fe5d0353e671d883a8b40d9c17c4b0dc9f78d120203187d5832122",
+      "original_class_hash": "0xf1bba370fe5d0353e671d883a8b40d9c17c4b0dc9f78d120203187d5832122",
       "base_class_hash": "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76",
       "abi": [
         {
@@ -1144,6 +1151,42 @@
               ],
               "outputs": [],
               "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "register_blobert",
+              "inputs": [
+                {
+                  "name": "blobert_id",
+                  "type": "core::integer::u128"
+                },
+                {
+                  "name": "blobert_name",
+                  "type": "core::felt252"
+                },
+                {
+                  "name": "health",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "attack",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "special_attack",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "special_defense",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "speed",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "view"
             }
           ]
         },
@@ -1223,18 +1266,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x3a7305310c7b2884ffc76c0337e9ca7062774d83895db48f5f698afedd74ea7",
-      "original_class_hash": "0x3a7305310c7b2884ffc76c0337e9ca7062774d83895db48f5f698afedd74ea7",
+      "class_hash": "0x53d62e5412c95280dec3356161ae413935cf34f8f6559aa8b3860673eb4ec2",
+      "original_class_hash": "0x53d62e5412c95280dec3356161ae413935cf34f8f6559aa8b3860673eb4ec2",
       "abi": [
         {
           "type": "impl",
@@ -1410,6 +1463,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_1::Iblobert_one"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_1::BlobertOne",
           "members": [
@@ -1418,12 +1505,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -1463,18 +1558,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x263bba5fd559f8a5928728b0f7ed835e3832d9e64f39676cbf3fa6d675299c7",
-      "original_class_hash": "0x263bba5fd559f8a5928728b0f7ed835e3832d9e64f39676cbf3fa6d675299c7",
+      "class_hash": "0x245e535b8f5b9ae24c8251180feaa7e54ba2ce79a26fe99b35319a96a98d7b",
+      "original_class_hash": "0x245e535b8f5b9ae24c8251180feaa7e54ba2ce79a26fe99b35319a96a98d7b",
       "abi": [
         {
           "type": "impl",
@@ -1650,6 +1755,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_2::Iblobert_two"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_2::BlobertTwo",
           "members": [
@@ -1658,12 +1797,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -1703,18 +1850,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73",
-      "original_class_hash": "0x56297efee701c2eaf6c857d50a45446251f982102cda82574dfa337733cde73",
+      "class_hash": "0x24522190b9ad37e539b14c12abc3fb30e034d4f8cc49c970abe99d4ca118111",
+      "original_class_hash": "0x24522190b9ad37e539b14c12abc3fb30e034d4f8cc49c970abe99d4ca118111",
       "abi": [
         {
           "type": "impl",
@@ -1890,6 +2047,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_3::Iblobert_three"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_3::BlobertThree",
           "members": [
@@ -1898,12 +2089,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -1943,18 +2142,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb",
-      "original_class_hash": "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb",
+      "class_hash": "0x77c840d42992b168936bb34910106d6c14c3b877e6d3cf76fe5294f4224e361",
+      "original_class_hash": "0x77c840d42992b168936bb34910106d6c14c3b877e6d3cf76fe5294f4224e361",
       "abi": [
         {
           "type": "impl",
@@ -2130,6 +2339,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_4::Iblobert_four"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_4::BlobertFour",
           "members": [
@@ -2138,12 +2381,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -2183,18 +2434,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x504f3a3a2c1a45bcb269b61023725dc989b9f889363b7add294d4a44cd66c79",
-      "original_class_hash": "0x504f3a3a2c1a45bcb269b61023725dc989b9f889363b7add294d4a44cd66c79",
+      "class_hash": "0x10db05db0f31e825a1276173b5cb9933fe1d7586831f7211807dcd6551883c3",
+      "original_class_hash": "0x10db05db0f31e825a1276173b5cb9933fe1d7586831f7211807dcd6551883c3",
       "abi": [
         {
           "type": "impl",
@@ -2370,6 +2631,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_5::Iblobert_five"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_5::BlobertFive",
           "members": [
@@ -2378,12 +2673,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -2423,18 +2726,28 @@
           "key": true
         },
         {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
           "name": "blobert_id",
-          "type": "u8",
+          "type": "u128",
           "key": true
         },
         {
           "name": "health",
           "type": "u8",
           "key": false
+        },
+        {
+          "name": "blobet_side_effect",
+          "type": "SideEffectType",
+          "key": false
         }
       ],
-      "class_hash": "0x56a4ca3c9ba7f73968b3b6b9fd693a009a4fd8790ddaf4947acfac64037c269",
-      "original_class_hash": "0x56a4ca3c9ba7f73968b3b6b9fd693a009a4fd8790ddaf4947acfac64037c269",
+      "class_hash": "0x2b34ac398807c689fb7f43e04c2c38b715d406800fcdf47090c032f7fd5e5f0",
+      "original_class_hash": "0x2b34ac398807c689fb7f43e04c2c38b715d406800fcdf47090c032f7fd5e5f0",
       "abi": [
         {
           "type": "impl",
@@ -2610,6 +2923,40 @@
           "interface_name": "dojo_starter::models::blobert::blobert_6::Iblobert_six"
         },
         {
+          "type": "enum",
+          "name": "dojo_starter::models::side_effect::SideEffectType",
+          "variants": [
+            {
+              "name": "Burn",
+              "type": "()"
+            },
+            {
+              "name": "Paralyzed",
+              "type": "()"
+            },
+            {
+              "name": "Frozen",
+              "type": "()"
+            },
+            {
+              "name": "Sleep",
+              "type": "()"
+            },
+            {
+              "name": "Poison",
+              "type": "()"
+            },
+            {
+              "name": "Confusion",
+              "type": "()"
+            },
+            {
+              "name": "Flinch",
+              "type": "()"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::blobert::blobert_6::BlobertSix",
           "members": [
@@ -2618,12 +2965,20 @@
               "type": "core::starknet::contract_address::ContractAddress"
             },
             {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
               "name": "blobert_id",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "health",
               "type": "core::integer::u8"
+            },
+            {
+              "name": "blobet_side_effect",
+              "type": "dojo_starter::models::side_effect::SideEffectType"
             }
           ]
         },
@@ -2664,37 +3019,37 @@
         },
         {
           "name": "blobert_1",
-          "type": "u8",
+          "type": "u128",
           "key": false
         },
         {
           "name": "blobert_2",
-          "type": "u8",
+          "type": "u128",
           "key": false
         },
         {
           "name": "blobert_3",
-          "type": "u8",
+          "type": "u128",
           "key": false
         },
         {
           "name": "blobert_4",
-          "type": "u8",
+          "type": "u128",
           "key": false
         },
         {
           "name": "blobert_5",
-          "type": "u8",
+          "type": "u128",
           "key": false
         },
         {
           "name": "blobert_6",
-          "type": "u8",
+          "type": "u128",
           "key": false
         }
       ],
-      "class_hash": "0x157b06c275a10cc44b46eadb570f785297bcf7b762d97ba078beed67d0a7eb",
-      "original_class_hash": "0x157b06c275a10cc44b46eadb570f785297bcf7b762d97ba078beed67d0a7eb",
+      "class_hash": "0x569c81884a1692aa5c4411812b27dddaf45ef27fe1aa9fe5c05ec58312d095c",
+      "original_class_hash": "0x569c81884a1692aa5c4411812b27dddaf45ef27fe1aa9fe5c05ec58312d095c",
       "abi": [
         {
           "type": "impl",
@@ -2879,27 +3234,27 @@
             },
             {
               "name": "blobert_1",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "blobert_2",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "blobert_3",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "blobert_4",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "blobert_5",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             },
             {
               "name": "blobert_6",
-              "type": "core::integer::u8"
+              "type": "core::integer::u128"
             }
           ]
         },
@@ -3205,6 +3560,273 @@
         }
       ],
       "name": "dojo_starter::models::blobert_pokedex::blobert_pokedex"
+    },
+    {
+      "kind": "DojoModel",
+      "members": [
+        {
+          "name": "game_id",
+          "type": "u128",
+          "key": true
+        },
+        {
+          "name": "player_a",
+          "type": "ContractAddress",
+          "key": false
+        },
+        {
+          "name": "player_b",
+          "type": "ContractAddress",
+          "key": false
+        },
+        {
+          "name": "active_blobert_a",
+          "type": "u128",
+          "key": false
+        },
+        {
+          "name": "active_blobert_b",
+          "type": "u128",
+          "key": false
+        },
+        {
+          "name": "turn",
+          "type": "ContractAddress",
+          "key": false
+        }
+      ],
+      "class_hash": "0x53ef519c4abb17b8eba5a3f6888534b7e9ba9bfd622270d577e2ce55be4354d",
+      "original_class_hash": "0x53ef519c4abb17b8eba5a3f6888534b7e9ba9bfd622270d577e2ce55be4354d",
+      "abi": [
+        {
+          "type": "impl",
+          "name": "DojoModelImpl",
+          "interface_name": "dojo::model::IDojoModel"
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::integer::u8>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::integer::u8>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::felt252>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::felt252>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<core::array::Span::<core::felt252>>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<core::array::Span::<core::felt252>>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo::database::introspect::Struct",
+          "members": [
+            {
+              "name": "name",
+              "type": "core::felt252"
+            },
+            {
+              "name": "attrs",
+              "type": "core::array::Span::<core::felt252>"
+            },
+            {
+              "name": "children",
+              "type": "core::array::Span::<core::array::Span::<core::felt252>>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::array::Span::<(core::felt252, core::array::Span::<core::felt252>)>",
+          "members": [
+            {
+              "name": "snapshot",
+              "type": "@core::array::Array::<(core::felt252, core::array::Span::<core::felt252>)>"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo::database::introspect::Enum",
+          "members": [
+            {
+              "name": "name",
+              "type": "core::felt252"
+            },
+            {
+              "name": "attrs",
+              "type": "core::array::Span::<core::felt252>"
+            },
+            {
+              "name": "children",
+              "type": "core::array::Span::<(core::felt252, core::array::Span::<core::felt252>)>"
+            }
+          ]
+        },
+        {
+          "type": "enum",
+          "name": "dojo::database::introspect::Ty",
+          "variants": [
+            {
+              "name": "Primitive",
+              "type": "core::felt252"
+            },
+            {
+              "name": "Struct",
+              "type": "dojo::database::introspect::Struct"
+            },
+            {
+              "name": "Enum",
+              "type": "dojo::database::introspect::Enum"
+            },
+            {
+              "name": "Tuple",
+              "type": "core::array::Span::<core::array::Span::<core::felt252>>"
+            },
+            {
+              "name": "Array",
+              "type": "core::integer::u32"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo::model::IDojoModel",
+          "items": [
+            {
+              "type": "function",
+              "name": "name",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "unpacked_size",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u32"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "packed_size",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::integer::u32"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "layout",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::array::Span::<core::integer::u8>"
+                }
+              ],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "schema",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "dojo::database::introspect::Ty"
+                }
+              ],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "impl",
+          "name": "gameImpl",
+          "interface_name": "dojo_starter::models::game::Igame"
+        },
+        {
+          "type": "struct",
+          "name": "dojo_starter::models::game::Game",
+          "members": [
+            {
+              "name": "game_id",
+              "type": "core::integer::u128"
+            },
+            {
+              "name": "player_a",
+              "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+              "name": "player_b",
+              "type": "core::starknet::contract_address::ContractAddress"
+            },
+            {
+              "name": "active_blobert_a",
+              "type": "core::integer::u128"
+            },
+            {
+              "name": "active_blobert_b",
+              "type": "core::integer::u128"
+            },
+            {
+              "name": "turn",
+              "type": "core::starknet::contract_address::ContractAddress"
+            }
+          ]
+        },
+        {
+          "type": "interface",
+          "name": "dojo_starter::models::game::Igame",
+          "items": [
+            {
+              "type": "function",
+              "name": "ensure_abi",
+              "inputs": [
+                {
+                  "name": "model",
+                  "type": "dojo_starter::models::game::Game"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "view"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "name": "dojo_starter::models::game::game::Event",
+          "kind": "enum",
+          "variants": []
+        }
+      ],
+      "name": "dojo_starter::models::game::game"
     },
     {
       "kind": "DojoModel",

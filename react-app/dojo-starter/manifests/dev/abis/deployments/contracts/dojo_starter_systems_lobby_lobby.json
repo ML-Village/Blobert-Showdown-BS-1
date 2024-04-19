@@ -80,29 +80,36 @@
         "inputs": [
           {
             "name": "blobert_1",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           },
           {
             "name": "blobert_2",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           },
           {
             "name": "blobert_3",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           },
           {
             "name": "blobert_4",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           },
           {
             "name": "blobert_5",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           },
           {
             "name": "blobert_6",
-            "type": "core::integer::u8"
+            "type": "core::integer::u128"
           }
         ],
+        "outputs": [],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "create_battle_room",
+        "inputs": [],
         "outputs": [],
         "state_mutability": "view"
       }

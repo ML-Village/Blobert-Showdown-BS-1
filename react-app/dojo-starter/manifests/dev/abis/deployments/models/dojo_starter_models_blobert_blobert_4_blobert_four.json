@@ -173,6 +173,40 @@
     "interface_name": "dojo_starter::models::blobert::blobert_4::Iblobert_four"
   },
   {
+    "type": "enum",
+    "name": "dojo_starter::models::side_effect::SideEffectType",
+    "variants": [
+      {
+        "name": "Burn",
+        "type": "()"
+      },
+      {
+        "name": "Paralyzed",
+        "type": "()"
+      },
+      {
+        "name": "Frozen",
+        "type": "()"
+      },
+      {
+        "name": "Sleep",
+        "type": "()"
+      },
+      {
+        "name": "Poison",
+        "type": "()"
+      },
+      {
+        "name": "Confusion",
+        "type": "()"
+      },
+      {
+        "name": "Flinch",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
     "name": "dojo_starter::models::blobert::blobert_4::BlobertFour",
     "members": [
@@ -181,12 +215,20 @@
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
+        "name": "game_id",
+        "type": "core::integer::u128"
+      },
+      {
         "name": "blobert_id",
-        "type": "core::integer::u8"
+        "type": "core::integer::u128"
       },
       {
         "name": "health",
         "type": "core::integer::u8"
+      },
+      {
+        "name": "blobet_side_effect",
+        "type": "dojo_starter::models::side_effect::SideEffectType"
       }
     ]
   },

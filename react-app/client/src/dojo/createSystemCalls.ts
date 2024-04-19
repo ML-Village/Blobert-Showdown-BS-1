@@ -58,20 +58,20 @@ export function createSystemCalls(
         return success
       }
     
-    //   const _executeCall = async (params: DojoCall): Promise<any | null> => {
-    //     let results = null
-    //     try {
-    //       const eventData = await call(params.contractName, params.functionName, params.callData)
-    //       // console.log(eventData)
-    //       // result = decodeComponent(contractComponents['Component'], eventData.result)
-    //       results = eventData.result.map(v => BigInt(v))
-    //       // console.log(`call ${system}(${args.length}) success:`, result)
-    //     } catch (e) {
-    //       console.warn(`call ${params.contractName}::${params.functionName}(${params.callData.length}) exception:`, e)
-    //     } finally {
-    //     }
-    //     return results
-    //   }
+      // const _executeCall = async (params: DojoCall): Promise<any | null> => {
+      //   let results = null
+      //   try {
+      //     const eventData = await call(params.contractName, params.functionName, params.callData)
+      //     // console.log(eventData)
+      //     // result = decodeComponent(contractComponents['Component'], eventData.result)
+      //     results = eventData.result.map(v => BigInt(v))
+      //     // console.log(`call ${system}(${args.length}) success:`, result)
+      //   } catch (e) {
+      //     console.warn(`call ${params.contractName}::${params.functionName}(${params.callData.length}) exception:`, e)
+      //   } finally {
+      //   }
+      //   return results
+      // }
       
       const register_player = async (signer: AccountInterface, name: string): Promise<boolean> => {
         const args = [stringToFelt(name)]
@@ -83,9 +83,14 @@ export function createSystemCalls(
         return await _executeTransaction(signer, lobby_call('choose_blobert', args))
       }
 
+      const create_room_battle = async(signer: AccountInterface): Promise<boolean> => {
+        return await _executeTransaction(signer, lobby_call('create_battle_room', []))
+      }
+
       return {
         register_player,
-        choose_blobert
+        choose_blobert,
+        create_room_battle
       }
   }
 
@@ -105,139 +110,3 @@ export function createSystemCalls(
     return true
   }
   
-// export function createSystemCalls(
-//     { client }: { client: IWorld },
-//     contractComponents: ContractComponents,
-//     { BlobertOne, BlobertTwo, BlobertThree, BlobertFour, BlobertFive, BlobertSix, Player }: ClientComponents
-// ) {
-//     const register_player = async (account: AccountInterface, name: string) => {
-//         try {
-//             const { transaction_hash } = await client.lobby.register_player({
-//                 account, name
-//             })
-//             console.log(
-//                 await account.waitForTransaction(transaction_hash, {
-//                     retryInterval: 100,
-//                 })
-//             )
-
-//             setComponentsFromEvents(
-//                 contractComponents,
-//                 getEvents(
-//                     await account.waitForTransaction(transaction_hash, {
-//                         retryInterval: 100,
-//                     })
-//                 )
-//             );
-//         }catch(e){
-//             console.log(e);
-//         } finally {
-//         }
-//     }
-    // const spawn = async (account: AccountInterface) => {
-    //     const entityId = getEntityIdFromKeys([
-    //         BigInt(account.address),
-    //     ]) as Entity;
-
-    //     const positionId = uuid();
-    //     Position.addOverride(positionId, {
-    //         entity: entityId,
-    //         value: { player: BigInt(entityId), vec: { x: 10, y: 10 } },
-    //     });
-
-    //     const movesId = uuid();
-    //     Moves.addOverride(movesId, {
-    //         entity: entityId,
-    //         value: {
-    //             player: BigInt(entityId),
-    //             remaining: 100,
-    //             last_direction: 0,
-    //         },
-    //     });
-
-    //     try {
-    //         const { transaction_hash } = await client.actions.spawn({
-    //             account,
-    //         });
-
-    //         console.log(
-    //             await account.waitForTransaction(transaction_hash, {
-    //                 retryInterval: 100,
-    //             })
-    //         );
-
-    //         setComponentsFromEvents(
-    //             contractComponents,
-    //             getEvents(
-    //                 await account.waitForTransaction(transaction_hash, {
-    //                     retryInterval: 100,
-    //                 })
-    //             )
-    //         );
-    //     } catch (e) {
-    //         console.log(e);
-    //         Position.removeOverride(positionId);
-    //         Moves.removeOverride(movesId);
-    //     } finally {
-    //         Position.removeOverride(positionId);
-    //         Moves.removeOverride(movesId);
-    //     }
-    // };
-
-    // const move = async (account: AccountInterface, direction: Direction) => {
-    //     const entityId = getEntityIdFromKeys([
-    //         BigInt(account.address),
-    //     ]) as Entity;
-
-    //     const positionId = uuid();
-    //     Position.addOverride(positionId, {
-    //         entity: entityId,
-    //         value: {
-    //             player: BigInt(entityId),
-    //             vec: updatePositionWithDirection(
-    //                 direction,
-    //                 getComponentValue(Position, entityId) as any
-    //             ).vec,
-    //         },
-    //     });
-
-    //     const movesId = uuid();
-    //     Moves.addOverride(movesId, {
-    //         entity: entityId,
-    //         value: {
-    //             player: BigInt(entityId),
-    //             remaining:
-    //                 (getComponentValue(Moves, entityId)?.remaining || 0) - 1,
-    //         },
-    //     });
-
-    //     try {
-    //         const { transaction_hash } = await client.actions.move({
-    //             account,
-    //             direction,
-    //         });
-
-    //         setComponentsFromEvents(
-    //             contractComponents,
-    //             getEvents(
-    //                 await account.waitForTransaction(transaction_hash, {
-    //                     retryInterval: 100,
-    //                 })
-    //             )
-    //         );
-    //     } catch (e) {
-    //         console.log(e);
-    //         Position.removeOverride(positionId);
-    //         Moves.removeOverride(movesId);
-    //     } finally {
-    //         Position.removeOverride(positionId);
-    //         Moves.removeOverride(movesId);
-    //     }
-    // };
-
-//     return {
-//         register_player
-//         // spawn,
-//         // move,
-//     };
-// }

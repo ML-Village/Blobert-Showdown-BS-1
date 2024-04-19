@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb"
-original_class_hash = "0x3fdc5f28a0a38ab0fab5a3eadbcddba474143209c518764aec4c9b7065a9ceb"
+class_hash = "0x77c840d42992b168936bb34910106d6c14c3b877e6d3cf76fe5294f4224e361"
+original_class_hash = "0x77c840d42992b168936bb34910106d6c14c3b877e6d3cf76fe5294f4224e361"
 abi = "manifests/dev/abis/base/models/dojo_starter_models_blobert_blobert_4_blobert_four.json"
 name = "dojo_starter::models::blobert::blobert_4::blobert_four"
 
@@ -10,11 +10,21 @@ type = "ContractAddress"
 key = true
 
 [[members]]
+name = "game_id"
+type = "u128"
+key = true
+
+[[members]]
 name = "blobert_id"
-type = "u8"
+type = "u128"
 key = true
 
 [[members]]
 name = "health"
 type = "u8"
+key = false
+
+[[members]]
+name = "blobet_side_effect"
+type = "SideEffectType"
 key = false
