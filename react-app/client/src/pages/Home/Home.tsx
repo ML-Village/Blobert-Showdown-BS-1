@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
 import {
   useDojoSystemCalls,
-  useDojoComponents,
   useDojoAccount,
 } from "../../dojo/DojoContext";
 import { useBlobertLineup } from "../../hooks/useBlobertLineup";
@@ -16,16 +15,17 @@ import {
 } from "../../config/constants/customBloberts";
 import { CurrentLookingBoard } from "../../components/CurrentLookingBoard";
 import Navbar from "../../components/Navbar/Navbar";
+import BlobberCarousel from "../../components/Carousel/BlobberCarousel";
 
 function Home() {
   const { register_player, choose_blobert, create_room_battle } =
     useDojoSystemCalls();
-  const { Player, BlobertLineup } = useDojoComponents();
   const {
     account,
     isMasterAccount,
     masterAccount,
     isDeploying,
+    count,
     create,
     clear,
     copyToClipboard,
@@ -33,7 +33,6 @@ function Home() {
     list,
     select,
     get,
-    count,
   } = useDojoAccount();
   const { name, total_duels, total_wins, total_losses } = usePlayer(
     account.address
@@ -98,10 +97,53 @@ function Home() {
   }, [clipboardStatus.message]);
 
   return (
-    <div className="min-h-screen bg-gray-800 ">
+    <div className="min-h-screen bg-gray-800 px-60">
       {/* Navbar section*/}
       <Navbar />
-      <div className="max-w-screen-lg mx-auto p-8 bg-slate-500 text-white rounded-lg">
+
+      {/* create burner/clear burner */}
+      <div className="flex text-orange-950 my-2">
+        <div>
+          {isDeploying ? (
+            <div className="w-full flex items-center justify-center">
+              <Spinner
+                size="lg"
+                color="failure"
+                aria-label="Summoning Blobber"
+              />
+            </div>
+          ) : (
+            <button
+              className={`
+                        ${count >= 4 ? "bg-orange-900" : "bg-orange-300"} 
+                        ${count >= 4 ? "text-white" : "text-orange-950"} 
+                        border-2 border-orange-950
+                        font-semibold
+                        px-2 py-2 rounded-lg w-full`}
+              onClick={create}
+              disabled={count >= 4}
+            >
+              {count >= 4 ? "You have enough Blobbers." : "Summon A Blobber"}
+            </button>
+          )}
+        </div>
+        <button
+          className="bg-orange-300 border-2 border-orange-950 font-semibold mx-2 px-2 py-2 rounded-lg w-30"
+          onClick={() => clear()}
+        >
+          Kick All Blobbers
+        </button>
+        <span className="flex items-center justify-end font-semibold mx-2 px-2 text-white">
+          {`Summoned Blobbers: ${count}/4`}
+        </span>
+      </div>
+
+      {/* Blobbers carousel */}
+      <div className="my-2">
+        <BlobberCarousel />
+      </div>
+
+      <div className="mx-auto p-8 bg-slate-500 text-white rounded-lg">
         <div className="flex flex-col space-y-4">
           {isDeploying ? (
             <div className="flex justify-center items-center">
