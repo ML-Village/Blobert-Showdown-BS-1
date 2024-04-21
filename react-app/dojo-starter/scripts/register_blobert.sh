@@ -33,4 +33,6 @@ sozo execute --world $WORLD_ADDRESS dojo_starter::systems::registry::registry re
 sozo execute --world $WORLD_ADDRESS dojo_starter::systems::registry::registry register_blobert -c 22,0x74657374,100,100,100,100,100 --wait
 sozo execute --world $WORLD_ADDRESS dojo_starter::systems::registry::registry register_blobert -c 23,0x74657374,100,100,100,100,100 --wait
 sozo execute --world $WORLD_ADDRESS dojo_starter::systems::registry::registry register_blobert -c 24,0x74657374,100,100,100,100,100 --wait
+sozo execute --world $WORLD_ADDRESS dojo_starter::systems::registry::registry register_blobert -c 25,0x74657374,100,100,100,100,100 --wait
+
 

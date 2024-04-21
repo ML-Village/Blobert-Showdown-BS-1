@@ -57,7 +57,7 @@ export const ChooseBlobertModel: React.FC<ChooseBlobertModelProps> = ({
   const handleRegisterLineUp = () => {
 
     alert(`Selected Blobert Indexes: ${selectedBlobert1}, ${selectedBlobert2}, ${selectedBlobert3}, ${selectedBlobert4}, ${selectedBlobert5}, ${selectedBlobert6}`);
-    // choose_blobert(account, selectedBlobert1, selectedBlobert2, selectedBlobert3, selectedBlobert4, selectedBlobert5, selectedBlobert6);
+    choose_blobert(account, selectedBlobert1, selectedBlobert2, selectedBlobert3, selectedBlobert4, selectedBlobert5, selectedBlobert6);
   };
 
   return (

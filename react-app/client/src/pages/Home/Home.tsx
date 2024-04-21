@@ -228,7 +228,7 @@ function Home() {
             {/* CREATE BLOBERT LINEUP */}
             <button onClick={() => setOpenModal(true)}>Choose Blobert</button>
 
-            <ChooseBlobertModel
+            {/* <ChooseBlobertModel
               openModal={openModal}
               setOpenModal={setOpenModal}
               customBlobertArray={customBlobertArray}
@@ -240,7 +240,7 @@ function Home() {
               setTargetSlot={setTargetSlot}
               slotImagePath={slotImagePath}
               handleRegisterLineUp={choose_blobert}
-            />
+            /> */}
 
             <ul className="list-none p-0 text-[black]">
               {blobert_1 && <li className="py-1">{blobert_1}</li>}
