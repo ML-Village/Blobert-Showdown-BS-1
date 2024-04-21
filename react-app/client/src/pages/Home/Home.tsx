@@ -52,12 +52,12 @@ function Home() {
   const [selectedBlobert, setSelectedBlobert] = useState("notblobby");
 
   const [slotImagePath, setSlotImagePath] = useState({
-    0: { path: "/assets/pc.png", index: 0 },
-    1: { path: "/assets/pc.png", index: 0 },
-    2: { path: "/assets/pc.png", index: 0 },
-    3: { path: "/assets/pc.png", index: 0 },
-    4: { path: "/assets/pc.png", index: 0 },
-    5: { path: "/assets/pc.png", index: 0 },
+    0: { path: "/pc.png", index: 0 },
+    1: { path: "/pc.png", index: 0 },
+    2: { path: "/pc.png", index: 0 },
+    3: { path: "/pc.png", index: 0 },
+    4: { path: "/pc.png", index: 0 },
+    5: { path: "/pc.png", index: 0 },
   });
 
   const setBlobertToSlot = (blobert: string, slot: number) => {
@@ -216,11 +216,13 @@ function Home() {
             </button>
 
             <button
-              onClick={() => console.log(name)}
+              onClick={() => alert(name)}
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
             >
               Check User
             </button>
+
+              {/* CREATE BLOBERT LINEUP */}
             <button onClick={() => setOpenModal(true)}>Choose Blobert</button>
 
             <ChooseBlobertModel
