@@ -1,22 +1,17 @@
 import { useDojoAccount } from "../../dojo/DojoContext";
 import { Carousel } from "flowbite-react";
 import { BlobberCard } from "./BlobberCard";
+import { useEffect, useState } from "react";
 
 export default function BlobberCarousel() {
-  const {
-    account,
-    isMasterAccount,
-    masterAccount,
-    isDeploying,
-    count,
-    create,
-    clear,
-    copyToClipboard,
-    applyFromClipboard,
-    list,
-    select,
-    get,
-  } = useDojoAccount();
+  const { account, list } = useDojoAccount();
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveIndex(list().length - 1);
+  }, [list]);
+
   return (
     <div
       className="h-[350px] flex flex-col border border-gray-400 rounded-xl overflow-hidden"
@@ -38,26 +33,20 @@ export default function BlobberCarousel() {
 
       {list().length > 0 ? (
         <Carousel className="px-16" slide={false}>
-          {/* Burner Cards */}
-          {
-            list()
-            .reverse()
-            .map((acc, index) => {
-              return (
-                <div
-                  className="flex justify-center items-center"
-                  key={`blobbercard-${index}`}
-                >
-                  <BlobberCard
-                    accountTarget={acc}
-                    blobbersIndex={index}
-                    burnerAddress={acc ? acc.address : ""}
-                    selected={account.address === acc.address}
-                  />
-                </div>
-              );
-            })}
-        </Carousel>
+        {list().reverse().map((acc, index) => {
+          const reversedIndex = list().length - 1 - index;
+          return (
+            <div className="flex justify-center items-center" key={`blobbercard-${index}`}>
+              <BlobberCard
+                accountTarget={acc}
+                blobbersIndex={reversedIndex}
+                burnerAddress={acc ? acc.address : ""}
+                selected={account.address === acc.address}
+              />
+            </div>
+          );
+        })}
+      </Carousel>
       ) : (
         <div className="flex justify-center items-center text-white font-semibold h-full">
           ~ Summon A Blobber to Train your Bloberts ~

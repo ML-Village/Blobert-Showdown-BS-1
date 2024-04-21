@@ -136,6 +136,7 @@ function Home() {
         <span className="flex items-center justify-end font-semibold mx-2 px-2 text-white">
           {`Summoned Blobbers: ${count}/4`}
         </span>
+        <button className=" bg-green-700 border-2 border-orange-950 font-semibold mx-2 px-2 py-2 rounded-lg w-30" onClick={() => alert(name)}>Check user</button>
       </div>
 
       {/* Blobbers carousel */}
