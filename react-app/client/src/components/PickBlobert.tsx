@@ -252,13 +252,8 @@ export const ChooseBlobertModel: React.FC<ChooseBlobertModelProps> = ({
 
               {/* configure lineup */}
               <button
-                className="
-                          ml-auto shrink
-                            px-2 py-2 border rounded-lg 
-                            text-white text-wrap text-sm font-semibold
-                            bg-red-700 hover:bg-red-300 hover:text-orange-900 
-                            hover:border-orange-900 hover:border-2
-                            "
+                className=" ml-auto shrink px-2 py-2 border rounded-lg text-white text-wrap text-sm font-semibold
+                            bg-red-700 hover:bg-red-300 hover:text-orange-900  hover:border-orange-900 hover:border-2 "
                 onClick={handleRegisterLineUp}
               >
                 Confirm LineUp

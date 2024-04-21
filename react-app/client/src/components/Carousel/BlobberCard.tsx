@@ -8,6 +8,11 @@ import {
 import { usePlayer } from "../../hooks/usePlayer";
 import { useEffect, useRef, useState } from "react";
 import { stringToFelt } from "../../utils";
+import { ChooseBlobertModel } from "../PickBlobert";
+import {
+  customBlobertArray,
+  customBlobertInfoObject,
+} from "../../config/constants/customBloberts";
 
 export const BlobberCard = ({
   accountTarget,
@@ -21,9 +26,8 @@ export const BlobberCard = ({
   selected: boolean;
 }) => {
   const { account, select } = useDojoAccount();
-  const { name, total_duels, total_wins, total_losses } = usePlayer(
-    burnerAddress
-  );
+  const { name, total_duels, total_wins, total_losses } =
+    usePlayer(burnerAddress);
   const { register_player, choose_blobert, create_room_battle } =
     useDojoSystemCalls();
 
@@ -40,10 +44,35 @@ export const BlobberCard = ({
     setNameInputValue(""); // Clear the input field
   };
 
+  // input config
   const nameInputRef = useRef<HTMLInputElement>(null);
-  const [nameInputValue, setNameInputValue] = useState('');
+  const [nameInputValue, setNameInputValue] = useState("");
   const handleNameInputChange = (e: any) => {
     setNameInputValue(e.target.value);
+  };
+
+  // modal config
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedBlobert, setSelectedBlobert] = useState("notblobby");
+  const [targetSlot, setTargetSlot] = useState(0);
+
+  const [slotImagePath, setSlotImagePath] = useState({
+    0: { path: "/pc.png", index: 0 },
+    1: { path: "/pc.png", index: 0 },
+    2: { path: "/pc.png", index: 0 },
+    3: { path: "/pc.png", index: 0 },
+    4: { path: "/pc.png", index: 0 },
+    5: { path: "/pc.png", index: 0 },
+  });
+  const setBlobertToSlot = (blobert: string, slot: number) => {
+    //console.log(`Setting ${blobert} to slot ${slot}`);
+    setSlotImagePath({
+      ...slotImagePath,
+      [slot]: {
+        path: (customBlobertInfoObject as any)[blobert]?.path,
+        index: customBlobertArray.indexOf(blobert),
+      },
+    });
   };
 
   return (
@@ -82,13 +111,11 @@ export const BlobberCard = ({
             value={nameInputValue}
             onChange={handleNameInputChange}
             ref={nameInputRef}
-            onClick={()=> nameInputRef.current?.focus()}
+            onClick={() => nameInputRef.current?.focus()}
             disabled={name !== ""}
-
           />
           <button
-            className={`border border-white rounded-lg
-              px-2 text-white 
+            className={`border border-white rounded-lg px-2 text-white 
               ${
                 name === ""
                   ? `bg-orange-800 hover:bg-orange-600`
@@ -102,7 +129,7 @@ export const BlobberCard = ({
           </button>
         </div>
 
-        {/* burner address */}
+        {/* signer address and select blobber button */}
         <div
           className="mx-2 my-2 flex items-center text-sm text-white
             "
@@ -113,9 +140,7 @@ export const BlobberCard = ({
               ${
                 selected
                   ? `bg-yellow-300/35 border-2 border-orange-500`
-                  : `border-2 border-green-900
-              bg-emerald-500 text-black font-semibold
-              hover:bg-green-800 hover:text-white`
+                  : `border-2 border-green-900 bg-emerald-500 text-black font-semibold hover:bg-green-800 hover:text-white`
               }
               `}
             disabled={selected}
@@ -123,6 +148,56 @@ export const BlobberCard = ({
           >
             {selected ? `Blobber Selected` : `Use This Blobber`}
           </button>
+        </div>
+
+        {/* configure blobert lineup */}
+        <div className=" flex items-center justify-center">
+          <div className="flex grid-cols-6 gap-1 justify-between w-full mx-1 px-1">
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[0].path}
+            />
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[1].path}
+            />
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[2].path}
+            />
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[3].path}
+            />
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[4].path}
+            />
+            <img
+              className="h-20 border rounded-lg"
+              src={slotImagePath[5].path}
+            />
+          </div>
+
+          <button
+            className="bg-orange-300 shrink px-2 py-2 border rounded-lg text-wrap text-sm"
+            onClick={() => setOpenModal(true)}
+          >
+            configure Blobert Line-up
+          </button>
+          <ChooseBlobertModel
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            customBlobertArray={customBlobertArray}
+            customBlobertInfoObject={customBlobertInfoObject}
+            selectedBlobert={selectedBlobert}
+            setSelectedBlobert={setSelectedBlobert}
+            setBlobertToSlot={setBlobertToSlot}
+            targetSlot={targetSlot}
+            setTargetSlot={setTargetSlot}
+            slotImagePath={slotImagePath}
+            handleRegisterLineUp={choose_blobert}
+          />
         </div>
       </div>
     </div>

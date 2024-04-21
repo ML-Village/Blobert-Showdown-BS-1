@@ -33,20 +33,25 @@ export default function BlobberCarousel() {
 
       {list().length > 0 ? (
         <Carousel className="px-16" slide={false}>
-        {list().reverse().map((acc, index) => {
-          const reversedIndex = list().length - 1 - index;
-          return (
-            <div className="flex justify-center items-center" key={`blobbercard-${index}`}>
-              <BlobberCard
-                accountTarget={acc}
-                blobbersIndex={reversedIndex}
-                burnerAddress={acc ? acc.address : ""}
-                selected={account.address === acc.address}
-              />
-            </div>
-          );
-        })}
-      </Carousel>
+          {list()
+            .reverse()
+            .map((acc, index) => {
+              const reversedIndex = list().length - 1 - index;
+              return (
+                <div
+                  className="flex justify-center items-center"
+                  key={`blobbercard-${index}`}
+                >
+                  <BlobberCard
+                    accountTarget={acc}
+                    blobbersIndex={reversedIndex}
+                    burnerAddress={acc ? acc.address : ""}
+                    selected={account.address === acc.address}
+                  />
+                </div>
+              );
+            })}
+        </Carousel>
       ) : (
         <div className="flex justify-center items-center text-white font-semibold h-full">
           ~ Summon A Blobber to Train your Bloberts ~
