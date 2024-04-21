@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "flowbite-react";
-import {
-  useDojoSystemCalls,
-  useDojoAccount,
-} from "../../dojo/DojoContext";
+import { useDojoSystemCalls, useDojoAccount } from "../../dojo/DojoContext";
 import { useBlobertLineup } from "../../hooks/useBlobertLineup";
 import { usePlayer } from "../../hooks/usePlayer";
 import { stringToFelt } from "../../utils";
@@ -12,6 +9,7 @@ import { ChooseBlobertModel } from "../../components/PickBlobert";
 import {
   customBlobertArray,
   customBlobertInfoObject,
+  publicBlobertsPath,
 } from "../../config/constants/customBloberts";
 import { CurrentLookingBoard } from "../../components/CurrentLookingBoard";
 import Navbar from "../../components/Navbar/Navbar";
@@ -136,7 +134,12 @@ function Home() {
         <span className="flex items-center justify-end font-semibold mx-2 px-2 text-white">
           {`Summoned Blobbers: ${count}/4`}
         </span>
-        <button className=" bg-green-700 border-2 border-orange-950 font-semibold mx-2 px-2 py-2 rounded-lg w-30" onClick={() => alert(name)}>Check user</button>
+        <button
+          className=" bg-green-700 border-2 border-orange-950 font-semibold mx-2 px-2 py-2 rounded-lg w-30"
+          onClick={() => alert(name)}
+        >
+          Check user
+        </button>
       </div>
 
       {/* Blobbers carousel */}
@@ -222,7 +225,7 @@ function Home() {
               Check User
             </button>
 
-              {/* CREATE BLOBERT LINEUP */}
+            {/* CREATE BLOBERT LINEUP */}
             <button onClick={() => setOpenModal(true)}>Choose Blobert</button>
 
             <ChooseBlobertModel
@@ -271,6 +274,12 @@ function Home() {
           </button>
         </div>
         <CurrentLookingBoard />
+        <h1>blobert_1: {Number(blobert_1)}</h1>
+        <img
+          className="w-[50px]"
+          src={publicBlobertsPath[(Number(blobert_1)-1) % publicBlobertsPath.length]}
+          alt="..."
+        />
       </div>
     </div>
   );

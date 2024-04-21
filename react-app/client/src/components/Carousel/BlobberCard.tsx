@@ -12,7 +12,9 @@ import { ChooseBlobertModel } from "../PickBlobert";
 import {
   customBlobertArray,
   customBlobertInfoObject,
+  publicBlobertsPath,
 } from "../../config/constants/customBloberts";
+import { useBlobertLineup } from "../../hooks/useBlobertLineup";
 
 export const BlobberCard = ({
   accountTarget,
@@ -30,8 +32,6 @@ export const BlobberCard = ({
     usePlayer(burnerAddress);
   const { register_player, choose_blobert, create_room_battle } =
     useDojoSystemCalls();
-
-  const [nameSet, setNameSet] = useState<string>();
 
   const handleRegisterName = () => {
     if (!nameInputValue) {
@@ -51,6 +51,22 @@ export const BlobberCard = ({
     setNameInputValue(e.target.value);
   };
 
+  // blobert image config
+  const { blobert_1, blobert_2, blobert_3, blobert_4, blobert_5, blobert_6 } =
+    useBlobertLineup(burnerAddress);
+
+  // useEffect(() => {
+  //   console.log(
+  //     "BLOBERT LINE UP",
+  //     blobert_1,
+  //     blobert_2,
+  //     blobert_3,
+  //     blobert_4,
+  //     blobert_5,
+  //     blobert_6
+  //   );
+  // });
+
   // modal config
   const [openModal, setOpenModal] = useState(false);
   const [selectedBlobert, setSelectedBlobert] = useState("notblobby");
@@ -64,6 +80,7 @@ export const BlobberCard = ({
     4: { path: "/pc.png", index: 0 },
     5: { path: "/pc.png", index: 0 },
   });
+
   const setBlobertToSlot = (blobert: string, slot: number) => {
     //console.log(`Setting ${blobert} to slot ${slot}`);
     setSlotImagePath({
@@ -155,27 +172,63 @@ export const BlobberCard = ({
           <div className="flex grid-cols-6 gap-1 justify-between w-full mx-1 px-1">
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[0].path}
+              src={
+                Number(blobert_1) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_1) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[1].path}
+              src={
+                Number(blobert_2) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_2) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[2].path}
+              src={
+                Number(blobert_3) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_3) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[3].path}
+              src={
+                Number(blobert_4) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_4) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[4].path}
+              src={
+                Number(blobert_5) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_5) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
             <img
               className="h-20 border rounded-lg"
-              src={slotImagePath[5].path}
+              src={
+                Number(blobert_6) === 0
+                  ? "/pc.png"
+                  : publicBlobertsPath[
+                      (Number(blobert_6) - 1) % publicBlobertsPath.length
+                    ]
+              }
             />
           </div>
 
@@ -188,15 +241,6 @@ export const BlobberCard = ({
           <ChooseBlobertModel
             openModal={openModal}
             setOpenModal={setOpenModal}
-            customBlobertArray={customBlobertArray}
-            customBlobertInfoObject={customBlobertInfoObject}
-            selectedBlobert={selectedBlobert}
-            setSelectedBlobert={setSelectedBlobert}
-            setBlobertToSlot={setBlobertToSlot}
-            targetSlot={targetSlot}
-            setTargetSlot={setTargetSlot}
-            slotImagePath={slotImagePath}
-            handleRegisterLineUp={choose_blobert}
           />
         </div>
       </div>

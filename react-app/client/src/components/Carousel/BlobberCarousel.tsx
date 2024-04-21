@@ -6,12 +6,6 @@ import { useEffect, useState } from "react";
 export default function BlobberCarousel() {
   const { account, list } = useDojoAccount();
 
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    setActiveIndex(list().length - 1);
-  }, [list]);
-
   return (
     <div
       className="h-[350px] flex flex-col border border-gray-400 rounded-xl overflow-hidden"
