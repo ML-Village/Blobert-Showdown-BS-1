@@ -52,12 +52,21 @@ export const ChooseBlobertModel: React.FC<ChooseBlobertModelProps> = ({
   const [selectedBlobert6, setSelectedBlobert6] = useState(-1);
 
   const { choose_blobert } = useDojoSystemCalls();
-  const { account } = useDojoAccount()
+  const { account } = useDojoAccount();
 
   const handleRegisterLineUp = () => {
-
-    alert(`Selected Blobert Indexes: ${selectedBlobert1}, ${selectedBlobert2}, ${selectedBlobert3}, ${selectedBlobert4}, ${selectedBlobert5}, ${selectedBlobert6}`);
-    choose_blobert(account, selectedBlobert1, selectedBlobert2, selectedBlobert3, selectedBlobert4, selectedBlobert5, selectedBlobert6);
+    alert(
+      `Selected Blobert Indexes: ${selectedBlobert1}, ${selectedBlobert2}, ${selectedBlobert3}, ${selectedBlobert4}, ${selectedBlobert5}, ${selectedBlobert6}`
+    );
+    choose_blobert(
+      account,
+      (selectedBlobert1 + 1),
+      (selectedBlobert2 + 1),
+      (selectedBlobert3 + 1),
+      (selectedBlobert4 + 1),
+      (selectedBlobert5 + 1),
+      (selectedBlobert6 + 1)
+    );
   };
 
   return (
